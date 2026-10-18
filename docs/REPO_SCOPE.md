@@ -1,6 +1,6 @@
 # Repo scope
 
-**This repository is the SIH26100 build of Procurement Pilot, and only that.**
+**This repository is the SIH26100 build of BidShield AI (Intelligent Procurement Compliance Platform), and only that.**
 Prepared 29 September 2026 for Team Ace Azael.
 
 ## Target

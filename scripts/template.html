@@ -1,0 +1,3009 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BidShield AI — Intelligent Procurement Compliance Platform</title>
+<meta name="description" content="BidShield AI: Registry-verified bid compliance for government procurement officers. Smart India Hackathon 2026 (SIH26100) by Team Ace Azael.">
+<meta name="theme-color" content="#282B4A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L5 6v9c0 7.2 4.7 13.9 11 16 6.3-2.1 11-8.8 11-16V6L16 2z' fill='%23282B4A'/%3E%3Cpath d='M16 5.5L8 8.8v6.2c0 5.4 3.4 10.4 8 12.1 4.6-1.7 8-6.7 8-12.1V8.8L16 5.5z' fill='%230F766E'/%3E%3Cpath d='M14.5 18.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+<script>
+window.PP_API = '';
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* ==========================================================================
+   BIDSHIELD AI DESIGN SYSTEM
+   Exact Palette Tokens:
+   - Midnight Indigo: #282B4A
+   - Warm Vanilla:    #EEEBDA
+   - White:           #FFFFFF
+   - Teal:            #0F766E
+   - Success Green:   #15803D
+   - Warning Amber:   #B45309
+   - Critical Red:    #B91C1C
+   - Primary Text:    #1F2937
+   - Secondary Text:  #64748B
+   - Border:          #E2E8F0
+   ========================================================================== */
+:root {
+  --midnight: #282B4A;
+  --midnight-dark: #1E2038;
+  --midnight-light: #373A63;
+  --vanilla: #EEEBDA;
+  --vanilla-shell: #F7F5EE;
+  --vanilla-dark: #E4DFCC;
+  --white: #FFFFFF;
+  --teal: #0F766E;
+  --teal-hover: #0D655E;
+  --teal-light: #F0FDFA;
+  --teal-border: #99F6E4;
+  --success: #15803D;
+  --success-bg: #F0FDF4;
+  --success-border: #BBF7D0;
+  --warning: #B45309;
+  --warning-bg: #FFFBEB;
+  --warning-border: #FDE68A;
+  --critical: #B91C1C;
+  --critical-bg: #FEF2F2;
+  --critical-border: #FECACA;
+  --text-primary: #1F2937;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --border: #E2E8F0;
+  --border-subtle: #F1F5F9;
+  --border-dark: #CBD5E1;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { overflow-x: clip; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background-color: var(--vanilla-shell);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* Helpers */
+.font-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-teal { color: var(--teal); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-critical { color: var(--critical); }
+.text-midnight { color: var(--midnight); }
+
+/* Card components */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Badges & Tags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+.badge-teal { background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-border); }
+.badge-success { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+.badge-warning { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+.badge-critical { background: var(--critical-bg); color: var(--critical); border: 1px solid var(--critical-border); }
+.badge-midnight { background: #ECECF2; color: var(--midnight); border: 1px solid #D5D6E3; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+.btn-teal {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn-teal:hover:not([disabled]) {
+  background: var(--teal-hover);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+.btn-secondary {
+  background: var(--white);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover:not([disabled]) {
+  background: var(--border-subtle);
+  border-color: var(--border-dark);
+}
+.btn-midnight {
+  background: var(--midnight);
+  color: var(--white);
+}
+.btn-midnight:hover:not([disabled]) {
+  background: var(--midnight-light);
+}
+.btn-danger {
+  background: var(--critical);
+  color: var(--white);
+}
+.btn-danger:hover:not([disabled]) {
+  background: #991B1B;
+}
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12.5px;
+  border-radius: var(--radius-sm);
+}
+
+/* Form fields */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+.form-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   LANDING PAGE (PUBLIC SITE)
+   ========================================================================== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px clamp(16px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  flex: none;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+.brand-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--midnight);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.brand-subtitle {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color 0.15s;
+}
+.nav-link:hover {
+  color: var(--midnight);
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 18px;
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 57px;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px clamp(16px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 49;
+}
+.mobile-nav a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--vanilla);
+  color: var(--midnight);
+  border: 1px solid var(--vanilla-dark);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.hero-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.hero-title {
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 800;
+  color: var(--midnight);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.hero-tagline {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 20px;
+}
+.hero-desc {
+  font-size: clamp(16px, 1.8vw, 19px);
+  color: var(--text-secondary);
+  max-width: 760px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* Metric Highlights Bar */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.metric-card {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.metric-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--midnight);
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.metric-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.metric-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Sections */
+.section {
+  padding: clamp(48px, 6vw, 84px) clamp(16px, 4vw, 48px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-header {
+  margin-bottom: 36px;
+}
+.section-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: clamp(26px, 3.6vw, 38px);
+  font-weight: 800;
+  color: var(--midnight);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+/* Workflow Pipeline Cards */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+.pipeline-card {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pipeline-step {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  background: var(--teal-light);
+  border: 1px solid var(--teal-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+.pipeline-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.pipeline-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* 15 Checks Families Grid */
+.families-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+}
+.family-card {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+}
+.family-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.family-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--vanilla-shell);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+}
+.check-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.check-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.check-weight {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal);
+  flex: none;
+}
+
+/* Callout Box */
+.callout {
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  margin-top: 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.callout-warning {
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  color: var(--warning);
+}
+.callout-warning strong {
+  color: #78350F;
+}
+.callout p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #78350F;
+}
+
+/* Registries Grid */
+.registries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.registry-card {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.registry-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.registry-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.registry-verifies {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.registry-live {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--teal);
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+/* FAQ Accordion */
+.faq-grid {
+  display: grid;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: transparent;
+}
+.faq-question:hover {
+  background: var(--vanilla-shell);
+}
+.faq-answer {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+  padding: 40px clamp(16px, 4vw, 48px);
+  margin-top: 60px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+/* ==========================================================================
+   WORKSTATION SHELL & WORKFLOW
+   ========================================================================== */
+#ws {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--vanilla-shell);
+  overflow: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Login Gate */
+.gate {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: radial-gradient(circle at 50% 20%, #F8F6EE 0%, #E8E4D0 100%);
+}
+.gate-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 36px 32px;
+}
+.gate-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.gate-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+}
+.gate-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--midnight);
+  margin-bottom: 6px;
+}
+.gate-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.demo-accounts-box {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--vanilla-shell);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.demo-accounts-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.demo-accounts-grid {
+  display: grid;
+  gap: 8px;
+}
+.demo-account-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font-mono);
+  transition: all 0.15s;
+}
+.demo-account-btn:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+  color: var(--teal);
+}
+.demo-account-role {
+  font-size: 11px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* Workstation Top Bar */
+.ws-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--midnight);
+  color: var(--white);
+  padding: 10px clamp(16px, 3vw, 36px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
+}
+.ws-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ws-brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.ws-brand-badge {
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--midnight-light);
+  color: var(--vanilla);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.ws-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ws-nav-btn {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.15s;
+}
+.ws-nav-btn:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+}
+.ws-nav-btn[aria-current="page"] {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.ws-user-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ws-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.mode-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.mode-indicator i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34D399;
+}
+.mode-indicator.demo i {
+  background: #FBBF24;
+}
+
+/* Main workstation container */
+.ws-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   VIEW: DASHBOARD
+   ========================================================================== */
+.dashboard-view {
+  padding: clamp(20px, 3vw, 36px) clamp(16px, 4vw, 48px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.dashboard-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--midnight);
+}
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.stat-box {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+}
+.stat-box-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.stat-box-num {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+  color: var(--midnight);
+  margin-bottom: 6px;
+}
+.stat-box-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Risk visualizer bar */
+.risk-bar-card {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.risk-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.risk-bar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.risk-bar-progress {
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--border);
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.risk-seg {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+.risk-seg-low { background: var(--success); }
+.risk-seg-med { background: var(--warning); }
+.risk-seg-crit { background: var(--critical); }
+
+.risk-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.risk-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+.risk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Tenders Table Card */
+.directory-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.directory-toolbar {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.search-input-box {
+  position: relative;
+  min-width: 260px;
+  flex: 1;
+  max-width: 400px;
+}
+.filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-secondary);
+}
+.filter-pill.active {
+  background: var(--midnight);
+  color: var(--white);
+  border-color: var(--midnight);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.app-table th {
+  padding: 12px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  background: var(--vanilla-shell);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.app-table td {
+  padding: 14px 18px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.app-table tr:hover td {
+  background: #FCFBF7;
+}
+
+/* ==========================================================================
+   VIEW: TENDERS & DETAILED BID ANALYSIS
+   ========================================================================== */
+.tenders-view {
+  display: grid;
+  grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+  flex: 1;
+  min-height: calc(100vh - 60px);
+}
+@media (max-width: 960px) {
+  .tenders-view { grid-template-columns: 1fr; }
+}
+
+.tenders-sidebar {
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.tenders-sidebar-head {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--vanilla-shell);
+}
+.tenders-sidebar-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--midnight);
+  margin-bottom: 10px;
+}
+.tenders-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.tender-nav-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  transition: all 0.15s;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tender-nav-item:hover {
+  background: var(--vanilla-shell);
+}
+.tender-nav-item[aria-current="true"] {
+  background: var(--teal-light);
+  border-left: 4px solid var(--teal);
+}
+.tender-nav-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--midnight);
+  line-height: 1.3;
+}
+.tender-nav-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Main Tender & Bid Details Panel */
+.tender-detail-panel {
+  padding: clamp(20px, 3vw, 40px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tender-banner-card {
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tender-banner-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.tender-banner-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--midnight);
+  line-height: 1.25;
+}
+.spec-box {
+  padding: 12px 16px;
+  background: var(--vanilla-shell);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.tender-financials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.tender-financial-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tender-financial-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.tender-financial-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--midnight);
+}
+
+/* Bids List in Tender */
+.bids-table-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.bids-table-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bids-table-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+
+/* Evaluation Runner & Result Area */
+.eval-result-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+.eval-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 760px) {
+  .eval-overview-grid { grid-template-columns: 1fr; }
+}
+.score-display-box {
+  background: var(--vanilla-shell);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.score-big {
+  font-size: 64px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin: 8px 0;
+}
+.score-max {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.score-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--border);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.score-progress-fill {
+  height: 100%;
+  transition: width 0.8s ease;
+}
+
+.eval-details-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+.eval-verdict-tag {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.eval-bidder-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.eval-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.why-not-100-box {
+  padding: 14px 18px;
+  background: #FFF8E7;
+  border: 1px solid var(--warning-border);
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  color: #78350F;
+  line-height: 1.5;
+}
+
+/* 15 Checks Detailed List */
+.eval-checks-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.eval-checks-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--midnight);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.eval-check-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 14px;
+  background: var(--vanilla-shell);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.check-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+.status-pass { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+.status-flag { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+.status-fail { background: var(--critical-bg); color: var(--critical); border: 1px solid var(--critical-border); }
+
+/* AI Reasoning Box */
+.reasoning-box {
+  padding: 18px 20px;
+  background: #F4F3FB;
+  border: 1px solid #D7D5EA;
+  border-radius: var(--radius-md);
+}
+.reasoning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.reasoning-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--midnight);
+}
+.reasoning-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Document Verification & PDF Cross-check */
+.doc-check-box {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.doc-check-header {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--midnight);
+  margin-bottom: 8px;
+}
+.doc-check-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.doc-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.sample-doc-pill {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  background: var(--vanilla-shell);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--midnight);
+  cursor: pointer;
+}
+.sample-doc-pill:hover {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+/* Decision Controls & Official Stamp */
+.decision-box {
+  padding: 22px;
+  background: var(--vanilla-shell);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.decision-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--midnight);
+  margin-bottom: 6px;
+}
+.decision-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.decision-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btn-dec {
+  padding: 10px 18px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-primary);
+  transition: all 0.15s;
+}
+.btn-dec:hover:not([disabled]) {
+  border-color: var(--midnight);
+  background: var(--midnight);
+  color: var(--white);
+}
+.btn-dec.armed {
+  background: var(--warning);
+  color: var(--white);
+  border-color: var(--warning);
+}
+
+/* Override Warning / Panel */
+.override-container {
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: #FFF7ED;
+  border: 1px solid #FDBA74;
+  border-radius: var(--radius-md);
+}
+.override-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #9A3412;
+  margin-bottom: 4px;
+}
+.override-text {
+  font-size: 13px;
+  color: #9A3412;
+  margin-bottom: 10px;
+}
+
+/* Decision Stamp Seal */
+.official-stamp {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  border: 3px double;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transform: rotate(-6deg);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+}
+.stamp-qualified { color: var(--success); border-color: var(--success); }
+.stamp-clarify { color: var(--teal); border-color: var(--teal); }
+.stamp-hold { color: var(--warning); border-color: var(--warning); }
+.stamp-non { color: var(--critical); border-color: var(--critical); }
+.stamp-action {
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.stamp-meta {
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+/* Thinking / Progress Screen */
+.thinking-box {
+  padding: 36px 24px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--border);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Collusion Results Modal / Box */
+.collusion-box {
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Toast Alert */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--midnight);
+  color: var(--white);
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid var(--teal);
+}
+</style>
+</head>
+<body>
+
+<!-- PUBLIC SITE HEADER -->
+<header class="site-nav" id="top">
+  <a class="brand" href="#top" aria-label="BidShield AI Home">
+    <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16 2L5 6v9c0 7.2 4.7 13.9 11 16 6.3-2.1 11-8.8 11-16V6L16 2z" fill="#282B4A"/>
+      <path d="M16 5.5L8 8.8v6.2c0 5.4 3.4 10.4 8 12.1 4.6-1.7 8-6.7 8-12.1V8.8L16 5.5z" fill="#0F766E"/>
+      <path d="M14.5 18.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z" fill="#FFFFFF"/>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-title">BidShield AI</span>
+      <span class="brand-subtitle">Compliance Platform</span>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="siteNav">
+    <li><a class="nav-link" href="#pipeline">Workflow</a></li>
+    <li><a class="nav-link" href="#checks">15 Checks</a></li>
+    <li><a class="nav-link" href="#collusion">Collusion Screen</a></li>
+    <li><a class="nav-link" href="#registries">Registries</a></li>
+    <li><a class="nav-link" href="#faq">FAQ</a></li>
+  </ul>
+
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn btn-teal" data-open-ws type="button">
+      Open Workstation &rarr;
+    </button>
+    <button class="menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-label="Toggle Navigation">
+      &#9776;
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" hidden>
+  <a href="#pipeline" class="mob-link">Workflow</a>
+  <a href="#checks" class="mob-link">15 Checks</a>
+  <a href="#collusion" class="mob-link">Collusion Screen</a>
+  <a href="#registries" class="mob-link">Registries</a>
+  <a href="#faq" class="mob-link">FAQ</a>
+  <button class="btn btn-teal" data-open-ws type="button" style="margin-top:8px;">Open Workstation &rarr;</button>
+</div>
+
+<main id="site">
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      SIH26100 &middot; Ministry of Petroleum &amp; Natural Gas &middot; Team Ace Azael
+    </div>
+    <h1 class="hero-title">BidShield AI</h1>
+    <h2 class="hero-tagline">Intelligent Procurement Compliance Platform</h2>
+    <p class="hero-desc">
+      Automated, registry-verified bid compliance for government procurement. Fifteen deterministic checks verify every tender submission across ten national databases before a named officer signs. Code decides. AI explains. A human officer signs on the record.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-teal" data-open-ws type="button" style="padding:12px 24px;font-size:15px;">
+        Open Workstation &rarr;
+      </button>
+      <a class="btn btn-secondary" href="#pipeline" style="padding:12px 24px;font-size:15px;">
+        Explore How It Works
+      </a>
+    </div>
+
+    <!-- METRICS HIGHLIGHTS -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-num">15</div>
+        <div class="metric-label">Deterministic Checks</div>
+        <div class="metric-sub">Mathematical rules, fixed order, zero hallucination.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">10</div>
+        <div class="metric-label">National Registries</div>
+        <div class="metric-sub">GSTN, ITD, MCA21, EPFO, ESIC, Udyam, DigiLocker &amp; more.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Auditable Record</div>
+        <div class="metric-sub">Every decision, override and file extraction timestamped.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">Human</div>
+        <div class="metric-label">In The Loop</div>
+        <div class="metric-sub">Role-enforced approvals; senior written override required for flags.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS WORKFLOW -->
+  <section class="section" id="pipeline" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-header">
+      <div class="section-kicker">End-to-End Compliance Pipeline</div>
+      <h2 class="section-title">How BidShield AI Works</h2>
+      <p class="section-desc">From raw bid ingestion to final stamped officer decision, every step is transparent, deterministic, and securely auditable.</p>
+    </div>
+
+    <div class="pipeline-grid">
+      <div class="pipeline-card">
+        <span class="pipeline-step">01. Intake</span>
+        <h3 class="pipeline-title">Tender &amp; Bid Ingestion</h3>
+        <p class="pipeline-text">Tender technical specifications, budget benchmark, and bidder commercial submissions are securely loaded.</p>
+      </div>
+      <div class="pipeline-card">
+        <span class="pipeline-step">02. Registry Verification</span>
+        <h3 class="pipeline-title">Cross-Database Validation</h3>
+        <p class="pipeline-text">Cross-referenced against 10 national registry adapters (GSTN, ITD, MCA21, Udyam, EPFO, ESIC, Debarment list).</p>
+      </div>
+      <div class="pipeline-card">
+        <span class="pipeline-step">03. Rules Engine</span>
+        <h3 class="pipeline-title">15 Deterministic Checks</h3>
+        <p class="pipeline-text">Mathematical evaluation of EMD, turnover, pricing deviations, Make in India thresholds, and document completeness.</p>
+      </div>
+      <div class="pipeline-card">
+        <span class="pipeline-step">04. Collusion Detection</span>
+        <h3 class="pipeline-title">Pairwise Tender Screening</h3>
+        <p class="pipeline-text">Screening for clustered pricing (&lt;0.5%), rapid submission timing (&lt;5 min), shared registered addresses, and cover bids.</p>
+      </div>
+      <div class="pipeline-card">
+        <span class="pipeline-step">05. AI Synthesis</span>
+        <h3 class="pipeline-title">Reasoning Layer</h3>
+        <p class="pipeline-text">Sarvam AI (or deterministic fallback) synthesizes deductions into plain-language officer briefings without altering scores.</p>
+      </div>
+      <div class="pipeline-card">
+        <span class="pipeline-step">06. Officer Sign-off</span>
+        <h3 class="pipeline-title">Binding Officer Decision</h3>
+        <p class="pipeline-text">Qualified, Clarification, Hold, or Non-Compliant recorded with role verification, written override justifications, and audit stamps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 COMPLIANCE CHECKS -->
+  <section class="section" id="checks">
+    <div class="section-header">
+      <div class="section-kicker">Deterministic Rulebook</div>
+      <h2 class="section-title">The Fifteen Compliance Checks</h2>
+      <p class="section-desc">Each check returns PASS, FLAG, or FAIL with verified numbers and direct source citations. PASS earns full weight, FLAG half, FAIL zero.</p>
+    </div>
+
+    <div class="families-grid" id="checksFamGrid"></div>
+
+    <div class="callout callout-warning">
+      <div>&#9888;</div>
+      <div>
+        <strong>Critical Hard-Cap Rule:</strong>
+        <p>A failure on EMD compliance, Statutory documents, GST registration, or Debarment status automatically caps the maximum score at <strong>45/100</strong> and triggers a <strong>Critical Risk</strong> classification. Any other failure caps the score at <strong>72/100</strong> (High Risk).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLUSION SECTION -->
+  <section class="section" id="collusion" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-header">
+      <div class="section-kicker">Anti-Cartel Screening</div>
+      <h2 class="section-title">Pairwise Collusion Intelligence</h2>
+      <p class="section-desc">Every bidder on a tender is algorithmically compared against every other to flag suspicious coordinated bidding patterns.</p>
+    </div>
+
+    <div class="pipeline-grid">
+      <div class="pipeline-card">
+        <h3 class="pipeline-title">Price Clustering</h3>
+        <p class="pipeline-text">Flags quotes that land within 0.5% of each other, signalling artificial price coordination.</p>
+      </div>
+      <div class="pipeline-card">
+        <h3 class="pipeline-title">Submission Proximity</h3>
+        <p class="pipeline-text">Flags tender bids uploaded within 5 minutes of each other from related participants.</p>
+      </div>
+      <div class="pipeline-card">
+        <h3 class="pipeline-title">Shared Corporate Addresses</h3>
+        <p class="pipeline-text">Identifies ostensibly distinct bidders that share registered office premises or industrial units.</p>
+      </div>
+      <div class="pipeline-card">
+        <h3 class="pipeline-title">Cover Bidding</h3>
+        <p class="pipeline-text">Detects bids priced &gt;25% above the benchmark, designed solely to create a false impression of competitive bidding.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-warning">
+      <div>&#9432;</div>
+      <div>
+        <strong>Important Disclaimer:</strong>
+        <p>Collusion indicators are algorithmic warning signals intended to alert the procurement officer to request clarifications or conduct enhanced due diligence. They do not constitute legal proof of cartelization.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRIES SECTION -->
+  <section class="section" id="registries">
+    <div class="section-header">
+      <div class="section-kicker">National Data Integrations</div>
+      <h2 class="section-title">Ten Registry Verification Adapters</h2>
+      <p class="section-desc">One standardized adapter per government registry named in SIH26100. In this demonstration prototype, adapters process sample records with clear simulated status labelling.</p>
+    </div>
+
+    <div class="registries-grid" id="publicRegGrid"></div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section" id="faq" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="section-header">
+      <div class="section-kicker">Officer Reference</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-desc">Key operational and regulatory details regarding BidShield AI.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question">What does the AI model actually see? <span>+</span></button>
+        <div class="faq-answer" hidden>The model receives only the tender title, specification parameters, bidder identity, and the deterministic results of the 15 code-evaluated checks. It never receives commercial bank accounts, raw tax passwords, or unmasked sensitive PII, and it cannot alter computed scores or verdicts.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What occurs if the AI provider or model is offline? <span>+</span></button>
+        <div class="faq-answer" hidden>All 15 checks, compliance scoring, and collusion algorithms run in pure deterministic code. If the AI service is unreachable, BidShield AI automatically falls back to an offline rule-based synthesis and clearly labels the recommendation as deterministic.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can an officer quietly approve a flagged bid? <span>+</span></button>
+        <div class="faq-answer" hidden>No. Qualifying a bid not marked 'Compliant' by the system strictly requires Senior Approver credentials and a mandatory written justification of at least 30 characters. The server enforces this authorization check independently.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How does DPDP-compliant data retention work? <span>+</span></button>
+        <div class="faq-answer" hidden>Evaluations older than 180 days are automatically anonymised—commercial identifiers and free-text explanations are purged while statistical scores and audit counts remain intact for multi-year compliance integrity.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div class="brand">
+          <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 2L5 6v9c0 7.2 4.7 13.9 11 16 6.3-2.1 11-8.8 11-16V6L16 2z" fill="#282B4A"/>
+            <path d="M16 5.5L8 8.8v6.2c0 5.4 3.4 10.4 8 12.1 4.6-1.7 8-6.7 8-12.1V8.8L16 5.5z" fill="#0F766E"/>
+            <path d="M14.5 18.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z" fill="#FFFFFF"/>
+          </svg>
+          <div class="brand-text">
+            <span class="brand-title">BidShield AI</span>
+            <span class="brand-subtitle">Intelligent Procurement Compliance Platform</span>
+          </div>
+        </div>
+        <button class="btn btn-teal" data-open-ws type="button">Open Workstation &rarr;</button>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          <strong>Team Ace Azael</strong> &middot; ACE Engineering College, Hyderabad<br>
+          Student prototype built for Smart India Hackathon 2026, problem statement SIH26100 (Ministry of Petroleum and Natural Gas).
+        </div>
+        <div>MIT License &middot; 2026</div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- ==========================================================================
+     WORKSTATION APP
+     ========================================================================== -->
+<section id="ws" hidden aria-label="BidShield AI Workstation">
+  <!-- RESTRICTED OFFICER GATE -->
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="gate-header">
+        <svg class="gate-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 2L5 6v9c0 7.2 4.7 13.9 11 16 6.3-2.1 11-8.8 11-16V6L16 2z" fill="#282B4A"/>
+          <path d="M16 5.5L8 8.8v6.2c0 5.4 3.4 10.4 8 12.1 4.6-1.7 8-6.7 8-12.1V8.8L16 5.5z" fill="#0F766E"/>
+          <path d="M14.5 18.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z" fill="#FFFFFF"/>
+        </svg>
+        <h2 class="gate-title">Officer Sign-in</h2>
+        <p class="gate-desc">Access the evaluation workstation and record decisions on the official audit log.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="lgUser">Username</label>
+          <input class="form-input" id="lgUser" name="username" autocomplete="username" spellcheck="false" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lgPass">Password</label>
+          <input class="form-input" id="lgPass" name="password" type="password" autocomplete="current-password" required>
+        </div>
+
+        <div id="lgErr" role="alert" style="color:var(--critical);font-size:13px;margin-bottom:12px;min-height:18px;"></div>
+
+        <button class="btn btn-teal" type="submit" id="lgBtn" style="width:100%;padding:12px;">
+          <span id="lgLbl">Sign in</span> &rarr;
+        </button>
+
+        <div class="demo-accounts-box">
+          <div class="demo-accounts-title">Demo Accounts (Tap to fill)</div>
+          <div class="demo-accounts-grid">
+            <button type="button" class="demo-account-btn acct" data-u="officer1" data-p="officer123">
+              <span>officer1</span>
+              <span class="demo-account-role">Officer</span>
+            </button>
+            <button type="button" class="demo-account-btn acct" data-u="approver1" data-p="approver123">
+              <span>approver1</span>
+              <span class="demo-account-role">Senior Approver</span>
+            </button>
+            <button type="button" class="demo-account-btn acct" data-u="admin1" data-p="admin123">
+              <span>admin1</span>
+              <span class="demo-account-role">Admin</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+          <button type="button" id="gateExit" class="btn btn-secondary btn-sm">&larr; Back to Portal</button>
+          <details style="font-size:12px;color:var(--text-secondary);">
+            <summary style="cursor:pointer;">API Endpoint</summary>
+            <input class="form-input" id="apiUrl" placeholder="Default: Same origin (/api)" style="margin-top:6px;font-size:12px;padding:6px 10px;">
+          </details>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONSOLE / WORKSTATION SHELL -->
+  <div class="ws-content" id="console" hidden>
+    <!-- TOP WORKSTATION NAVIGATION -->
+    <header class="ws-navbar">
+      <div class="ws-brand">
+        <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+          <path d="M16 2L5 6v9c0 7.2 4.7 13.9 11 16 6.3-2.1 11-8.8 11-16V6L16 2z" fill="#0F766E"/>
+          <path d="M14.5 18.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4z" fill="#FFFFFF"/>
+        </svg>
+        <span class="ws-brand-title">BidShield AI</span>
+        <span class="ws-brand-badge">Workstation</span>
+      </div>
+
+      <ul class="ws-nav-tabs" id="wsNav">
+        <li><button class="ws-nav-btn" data-view="dashboard" aria-current="page">Dashboard</button></li>
+        <li><button class="ws-nav-btn" data-view="tenders">Tenders &amp; Bids</button></li>
+        <li><button class="ws-nav-btn" data-view="registries">Registries</button></li>
+        <li><button class="ws-nav-btn" data-view="audit">Audit Log</button></li>
+      </ul>
+
+      <div class="ws-user-area">
+        <span class="mode-indicator" id="modeTag">
+          <i></i><span id="modeText">Live Backend</span>
+        </span>
+        <div class="ws-user-badge">
+          <span><b id="whoName">officer1</b> (<span id="whoRole">Officer</span>)</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="signOut" type="button">Sign out</button>
+        <button class="btn btn-secondary btn-sm" id="wsExit" type="button">Portal</button>
+      </div>
+    </header>
+
+    <!-- VIEW 1: DASHBOARD -->
+    <section class="dashboard-view" id="viewDashboard">
+      <div class="dashboard-header">
+        <div>
+          <h2 class="dashboard-title">Compliance Overview &amp; Analytics</h2>
+          <p class="text-secondary" style="font-size:14px;margin-top:2px;">Real-time compliance monitoring across open tender submissions.</p>
+        </div>
+        <button class="btn btn-teal btn-sm" type="button" id="dashGoTenders">View All Open Tenders &rarr;</button>
+      </div>
+
+      <!-- STATS METRICS -->
+      <div class="stats-cards-grid">
+        <div class="stat-box">
+          <span class="stat-box-title">Total Submissions</span>
+          <span class="stat-box-num" id="statTotalBids">0</span>
+          <span class="stat-box-sub">Across open tenders</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title text-success">Compliant Bids</span>
+          <span class="stat-box-num text-success" id="statCompliantBids">0</span>
+          <span class="stat-box-sub">Clear compliance scores</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title text-warning">Needs Review</span>
+          <span class="stat-box-num text-warning" id="statReviewBids">0</span>
+          <span class="stat-box-sub">Minor flags or missing documents</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box-title text-critical">Critical Risk</span>
+          <span class="stat-box-num text-critical" id="statCriticalBids">0</span>
+          <span class="stat-box-sub">EMD/Debarment hard-cap failures</span>
+        </div>
+      </div>
+
+      <!-- RISK DISTRIBUTION PROGRESS -->
+      <div class="risk-bar-card">
+        <div class="risk-bar-header">
+          <span class="risk-bar-title">Risk Level Distribution</span>
+          <span class="badge badge-midnight" id="statRiskCount">Active Bids</span>
+        </div>
+        <div class="risk-bar-progress">
+          <div class="risk-seg risk-seg-low" id="segLow" style="width:40%" title="Low Risk"></div>
+          <div class="risk-seg risk-seg-med" id="segMed" style="width:30%" title="Medium Risk"></div>
+          <div class="risk-seg risk-seg-crit" id="segCrit" style="width:30%" title="Critical Risk"></div>
+        </div>
+        <div class="risk-legend">
+          <div class="risk-legend-item"><span class="risk-dot" style="background:var(--success)"></span> Low Risk (Fully Compliant)</div>
+          <div class="risk-legend-item"><span class="risk-dot" style="background:var(--warning)"></span> Medium Risk (Needs Review)</div>
+          <div class="risk-legend-item"><span class="risk-dot" style="background:var(--critical)"></span> Critical Risk (Hard Failure / Debarred)</div>
+        </div>
+      </div>
+
+      <!-- TENDERS DIRECTORY -->
+      <div class="directory-card">
+        <div class="directory-toolbar">
+          <div class="search-input-box">
+            <input class="form-input" id="dashSearch" placeholder="Search tenders by keyword, authority...">
+          </div>
+          <div class="filter-pills">
+            <button type="button" class="filter-pill active" data-cat="all">All</button>
+            <button type="button" class="filter-pill" data-cat="Goods">Goods</button>
+            <button type="button" class="filter-pill" data-cat="Services">Services</button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="app-table">
+            <thead>
+              <tr>
+                <th>Tender Authority</th>
+                <th>Tender Title</th>
+                <th>Category</th>
+                <th>Benchmark Budget</th>
+                <th>Submissions</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="dashTendersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: TENDERS & DETAILED BID ANALYSIS -->
+    <section class="tenders-view" id="viewTenders" hidden>
+      <!-- LEFT SIDEBAR -->
+      <aside class="tenders-sidebar">
+        <div class="tenders-sidebar-head">
+          <span class="badge badge-teal" id="tCount" style="margin-bottom:6px;">Open Tenders</span>
+          <h3 class="tenders-sidebar-title">Select Tender</h3>
+          <input class="form-input" id="tSearch" placeholder="Filter tenders..." style="padding:6px 10px;font-size:12.5px;">
+        </div>
+        <div class="tenders-list" id="tList"></div>
+      </aside>
+
+      <!-- RIGHT MAIN AREA -->
+      <article class="tender-detail-panel" id="detail"></article>
+    </section>
+
+    <!-- VIEW 3: REGISTRIES -->
+    <section class="dashboard-view" id="viewReg" hidden>
+      <div class="dashboard-header">
+        <div>
+          <h2 class="dashboard-title">National Registry Adapters</h2>
+          <p class="text-secondary" style="font-size:14px;margin-top:2px;">
+            Ten dedicated connectors across government databases. In demonstration mode, all lookups query standardized sample data.
+          </p>
+        </div>
+        <span class="badge badge-warning" id="regModeBadge">Simulated Mode</span>
+      </div>
+
+      <div class="registries-grid" id="regView"></div>
+    </section>
+
+    <!-- VIEW 4: AUDIT LOG -->
+    <section class="dashboard-view" id="viewAudit" hidden>
+      <div class="dashboard-header">
+        <div>
+          <h2 class="dashboard-title">Official Compliance Audit Trail</h2>
+          <p class="text-secondary" style="font-size:14px;margin-top:2px;">Immutable record of all evaluations, overrides, and binding officer decisions.</p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-danger btn-sm" id="resetBtn" type="button" hidden>Reset Demo Data</button>
+          <button class="btn btn-teal btn-sm" id="exportBtn" type="button">Export Log (JSON)</button>
+        </div>
+      </div>
+
+      <div class="directory-card">
+        <div class="directory-toolbar">
+          <div class="search-input-box">
+            <input class="form-input" id="auditSearch" placeholder="Search audit log by bidder, tender...">
+          </div>
+          <span class="text-secondary" style="font-size:12.5px;" id="exportNote">Administrator authorization required for exports.</span>
+        </div>
+        <div class="table-responsive">
+          <table class="app-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Tender</th>
+                <th>Bidder</th>
+                <th>Score</th>
+                <th>Risk Rating</th>
+                <th>AI Verdict</th>
+                <th>Officer Decision</th>
+                <th>Officer</th>
+              </tr>
+            </thead>
+            <tbody id="auditBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" id="exportBox" hidden style="padding:20px;margin-top:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <h4 style="font-size:15px;font-weight:700;">Audit Export (JSON)</h4>
+          <span class="badge badge-teal">Access Log Updated</span>
+        </div>
+        <textarea class="form-textarea font-mono" id="exportTxt" readonly style="height:220px;font-size:12px;"></textarea>
+        <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
+          <button class="btn btn-teal btn-sm" id="copyExport" type="button">Copy to Clipboard</button>
+          <span class="text-secondary" style="font-size:12px;" id="copyNote"></span>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="toast-msg" id="toast" hidden role="status"></div>
+
+__PP_SEED__
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+__ENGINE_JS__
+</script>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+var E=PPEngine;
+var ROLE_LABEL={officer:'Officer',senior_approver:'Senior Approver',admin:'Admin'};
+
+var inr=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
+function short(n){ if(n==null||isNaN(n)) return '-'; if(n>=1e7) return '₹'+(n/1e7).toFixed(2)+' Cr'; if(n>=1e5){ var l=n/1e5; return '₹'+(Math.round(l*10)===l*10?l.toFixed(1):l.toFixed(2))+' L'; } return inr.format(n); }
+function pad(n){ return (n<10?'0':'')+n; }
+function fmtTs(s){ if(!s) return '-'; var d=new Date(s); if(isNaN(d)) return String(s); var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]; return pad(d.getDate())+' '+m+' '+pad(d.getHours())+':'+pad(d.getMinutes()); }
+function nowIso(){ return new Date().toISOString(); }
+
+var S={token:null,user:null,role:null,mode:'demo',tenders:[],current:null,results:{},decided:{},lastKey:null};
+var demoAudit=[];
+
+function demoHistory(){
+  return demoAudit.filter(function(r){return r.officer&&r.officer!=='Pending';}).map(function(r){ return {tender:r.tender,bidder:r.bidder,decision:r.officer}; });
+}
+function normTender(t){
+  return {id:t.id, authority:t.authority, authority_full:t.authority_full||'', category:t.category, title:t.title, spec:t.spec, min_turnover:+t.min_turnover, benchmark_price:+t.benchmark_price,
+    required_documents:t.required_documents||[], oem_authorisation_required:!!t.oem_authorisation_required, labour_services:!!t.labour_services,
+    bidders:(t.bidders||[]).map(function(b){ return typeof b==='string'?{name:b}:b; })};
+}
+
+/* Toast helper */
+var toastEl=$('#toast'), toastT=0;
+function toast(m){
+  toastEl.textContent=m; toastEl.hidden=false; clearTimeout(toastT); toastT=setTimeout(function(){toastEl.hidden=true;},3600);
+}
+
+function setMode(m){
+  S.mode=m; var tag=$('#modeTag'), txt=$('#modeText');
+  tag.classList.toggle('demo', m==='demo');
+  txt.textContent=m==='live'?'Live Backend':'Demo Engine';
+}
+
+/* API Caller */
+function apiBase(){
+  var q=null,s=null; try{ q=new URLSearchParams(location.search).get('api'); }catch(_){}
+  try{ s=localStorage.getItem('pp_api'); }catch(_){}
+  return (q||s||window.PP_API||'').replace(/\/+$/,'');
+}
+
+function api(path,opts){
+  opts=opts||{}; var ctl=('AbortController' in window)?new AbortController():null, tm=setTimeout(function(){ if(ctl) ctl.abort(); },opts.timeout||9000);
+  var h={'Accept':'application/json'}; if(opts.body) h['Content-Type']='application/json'; if(S.token) h['Authorization']='Bearer '+S.token;
+  return fetch(apiBase()+path,{method:opts.method||'GET',headers:h,body:opts.body?JSON.stringify(opts.body):undefined,signal:ctl?ctl.signal:undefined}).then(function(r){
+    clearTimeout(tm); var ct=r.headers.get('content-type')||'';
+    if(ct.indexOf('json')<0){ var e0=new Error('Server did not return JSON.'); e0.kind='http'; e0.status=r.ok?0:r.status; throw e0; }
+    return r.json().then(function(j){ if(!r.ok){ var e=new Error(typeof j.detail==='string'?j.detail:('Request failed ('+r.status+')')); e.kind='http'; e.status=r.status; throw e; } return j; });
+  },function(){ clearTimeout(tm); var e=new Error('Network error'); e.kind='network'; throw e; });
+}
+
+/* Open / Close Workstation */
+var ws=$('#ws'), gate=$('#gate'), consoleEl=$('#console');
+function openWS(){
+  ws.hidden=false; document.documentElement.style.overflow='hidden';
+  try{ if(location.hash!=='#workstation') history.replaceState(null,'','#workstation'); }catch(_){}
+  if(S.user) showConsole(); else showGate();
+}
+function closeWS(){
+  ws.hidden=true; document.documentElement.style.overflow='';
+  try{ history.replaceState(null,'',location.pathname+location.search); }catch(_){}
+}
+function showGate(){
+  consoleEl.hidden=true; gate.hidden=false;
+  try{ $('#apiUrl').value=localStorage.getItem('pp_api')||''; }catch(_){}
+  setTimeout(function(){ $('#lgUser').focus({preventScroll:true}); },200);
+}
+function showConsole(){
+  gate.hidden=true; consoleEl.hidden=false;
+  $('#whoName').textContent=S.user; $('#whoRole').textContent=ROLE_LABEL[S.role]||S.role;
+  loadTenders();
+  setView('dashboard');
+}
+
+$$('[data-open-ws]').forEach(function(b){ b.addEventListener('click',function(e){ e.preventDefault(); openWS(); }); });
+$('#gateExit').addEventListener('click',closeWS);
+$('#wsExit').addEventListener('click',closeWS);
+addEventListener('keydown',function(e){ if(e.key==='Escape' && !ws.hidden && !gate.hidden) closeWS(); });
+$('#signOut').addEventListener('click',function(){
+  S.token=S.user=S.role=null; S.results={}; S.decided={}; S.lastKey=null; showGate();
+});
+
+/* Mobile Nav Toggle */
+var menuBtn=$('#menuBtn'), mobileNav=$('#mobileNav');
+if(menuBtn){
+  menuBtn.addEventListener('click',function(){
+    var open=mobileNav.hidden; mobileNav.hidden=!open; menuBtn.setAttribute('aria-expanded',String(open));
+  });
+}
+$$('.mob-link').forEach(function(a){
+  a.addEventListener('click',function(){ mobileNav.hidden=true; if(menuBtn) menuBtn.setAttribute('aria-expanded','false'); });
+});
+
+/* FAQ toggles */
+$$('.faq-question').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var ans=btn.nextElementSibling;
+    var open=!ans.hidden;
+    ans.hidden=open;
+    $('span',btn).textContent=open?'+':'−';
+  });
+});
+
+/* Demo accounts fill */
+$$('.acct').forEach(function(b){
+  b.addEventListener('click',function(){
+    $('#lgUser').value=b.dataset.u; $('#lgPass').value=b.dataset.p; $('#lgErr').textContent=''; $('#lgBtn').focus();
+  });
+});
+
+/* Login submit */
+$('#loginForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var u=$('#lgUser').value.trim(), p=$('#lgPass').value, err=$('#lgErr'), btn=$('#lgBtn'), lbl=$('#lgLbl');
+  if(!u||!p){ err.textContent='Please enter your username and password.'; return; }
+  err.textContent=''; btn.disabled=true; lbl.textContent='Verifying credentials...';
+
+  api('/api/auth/login',{method:'POST',body:{username:u,password:p},timeout:15000}).then(function(r){
+    S.token=r.access_token; S.user=r.username||u; S.role=r.role; setMode('live');
+  },function(ex){
+    if(ex.kind==='http' && ex.status===401) throw new Error(ex.message||'Invalid username or password.');
+    var a=E.users[u];
+    if(!a||a.password!==p) throw new Error('Invalid username or password. (Demo engine active)');
+    S.token=null; S.user=u; S.role=a.role; setMode('demo');
+  }).then(function(){
+    btn.disabled=false; lbl.textContent='Sign in'; showConsole();
+    if(S.mode==='demo') toast('Running in offline demo engine mode with sample data.');
+  },function(ex){
+    btn.disabled=false; lbl.textContent='Sign in'; err.textContent=ex.message;
+  });
+});
+
+/* Navigation Tabs */
+function setView(v){
+  $$('#wsNav .ws-nav-btn').forEach(function(btn){
+    if(btn.dataset.view===v) btn.setAttribute('aria-current','page'); else btn.removeAttribute('aria-current');
+  });
+  $('#viewDashboard').hidden=v!=='dashboard';
+  $('#viewTenders').hidden=v!=='tenders';
+  $('#viewReg').hidden=v!=='registries';
+  $('#viewAudit').hidden=v!=='audit';
+  if(v==='dashboard') renderDashboard();
+  if(v==='registries') loadRegistries();
+  if(v==='audit') loadAudit();
+}
+$$('#wsNav .ws-nav-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){ setView(btn.dataset.view); });
+});
+$('#dashGoTenders').addEventListener('click',function(){ setView('tenders'); });
+
+/* Load Tenders Data */
+function loadTenders(){
+  var done=function(list){
+    S.tenders=list.map(normTender);
+    renderDashboard();
+    renderTenderSidebar();
+    if(!S.current && S.tenders.length) selectTender(S.tenders[0].id);
+  };
+  if(S.mode==='live'){
+    api('/api/tenders').then(function(r){ if(!Array.isArray(r)||!r.length) throw 0; done(r); },function(){
+      toast('Loaded seed tenders in demo mode.'); done(E.tenders);
+    });
+  } else {
+    done(E.tenders);
+  }
+}
+
+/* ==========================================================================
+   DASHBOARD LOGIC
+   ========================================================================== */
+function renderDashboard(){
+  var totalBids=0, compliant=0, review=0, critical=0;
+  S.tenders.forEach(function(t){
+    totalBids+=t.bidders.length;
+    t.bidders.forEach(function(b){
+      var key=t.id+'|'+b.name;
+      var cached=S.results[key] && S.results[key].res;
+      if(cached){
+        if(cached.verdict==='Compliant') compliant++;
+        else if(cached.verdict==='Needs review') review++;
+        else critical++;
+      } else {
+        // Evaluate offline for dashboard stats preview
+        var ev=E.evaluate(t.id, b.name, []);
+        if(ev.verdict==='Compliant') compliant++;
+        else if(ev.verdict==='Needs review') review++;
+        else critical++;
+      }
+    });
+  });
+
+  $('#statTotalBids').textContent=totalBids;
+  $('#statCompliantBids').textContent=compliant;
+  $('#statReviewBids').textContent=review;
+  $('#statCriticalBids').textContent=critical;
+  $('#statRiskCount').textContent=totalBids+' evaluated submissions';
+
+  var pLow=totalBids?(compliant/totalBids*100):0;
+  var pMed=totalBids?(review/totalBids*100):0;
+  var pCrit=totalBids?(critical/totalBids*100):0;
+  $('#segLow').style.width=pLow.toFixed(1)+'%';
+  $('#segMed').style.width=pMed.toFixed(1)+'%';
+  $('#segCrit').style.width=pCrit.toFixed(1)+'%';
+
+  renderDashTenders();
+}
+
+var dashCategoryFilter='all', dashKeyword='';
+function renderDashTenders(){
+  var body=$('#dashTendersBody');
+  var filtered=S.tenders.filter(function(t){
+    if(dashCategoryFilter!=='all' && t.category!==dashCategoryFilter) return false;
+    if(dashKeyword && (t.title.toLowerCase().indexOf(dashKeyword)<0 && t.authority.toLowerCase().indexOf(dashKeyword)<0)) return false;
+    return true;
+  });
+
+  if(!filtered.length){
+    body.innerHTML='<tr><td colspan="6" class="text-secondary" style="text-align:center;padding:24px;">No tenders matched your search filters.</td></tr>';
+    return;
+  }
+
+  body.innerHTML=filtered.map(function(t){
+    return '<tr>'+
+      '<td><span class="badge badge-midnight">'+esc(t.authority)+'</span></td>'+
+      '<td><b>'+esc(t.title)+'</b><br><small class="text-secondary font-mono">Tender ID: '+esc(t.id)+'</small></td>'+
+      '<td><span class="badge badge-teal">'+esc(t.category)+'</span></td>'+
+      '<td class="font-mono"><b>'+short(t.benchmark_price)+'</b></td>'+
+      '<td><span class="badge badge-midnight font-mono">'+t.bidders.length+' bids</span></td>'+
+      '<td><button class="btn btn-teal btn-sm" type="button" data-open-tender="'+esc(t.id)+'">Inspect Bids &rarr;</button></td>'+
+    '</tr>';
+  }).join('');
+
+  $$('[data-open-tender]',body).forEach(function(b){
+    b.addEventListener('click',function(){
+      selectTender(b.dataset.openTender);
+      setView('tenders');
+    });
+  });
+}
+
+$('#dashSearch').addEventListener('input',function(){
+  dashKeyword=this.value.trim().toLowerCase();
+  renderDashTenders();
+});
+$$('.filter-pill').forEach(function(p){
+  p.addEventListener('click',function(){
+    $$('.filter-pill').forEach(function(x){x.classList.remove('active');});
+    p.classList.add('active');
+    dashCategoryFilter=p.dataset.cat;
+    renderDashTenders();
+  });
+});
+
+/* ==========================================================================
+   TENDERS & BID EVALUATION LOGIC
+   ========================================================================== */
+function renderTenderSidebar(){
+  var listEl=$('#tList'), kw=($('#tSearch').value||'').trim().toLowerCase();
+  var filtered=S.tenders.filter(function(t){
+    return !kw || t.title.toLowerCase().indexOf(kw)>=0 || t.authority.toLowerCase().indexOf(kw)>=0;
+  });
+
+  $('#tCount').textContent=filtered.length+' Open Tenders';
+  listEl.innerHTML=filtered.map(function(t){
+    var isSel=S.current && S.current.id===t.id;
+    return '<button type="button" class="tender-nav-item" data-tid="'+esc(t.id)+'" aria-current="'+String(isSel)+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;">'+
+        '<span class="badge badge-midnight" style="font-size:10.5px;">'+esc(t.authority)+'</span>'+
+        '<span class="text-secondary font-mono" style="font-size:11px;">'+short(t.benchmark_price)+'</span>'+
+      '</div>'+
+      '<div class="tender-nav-title">'+esc(t.title)+'</div>'+
+      '<div class="tender-nav-meta">'+esc(t.category)+' &middot; '+t.bidders.length+' bids received</div>'+
+    '</button>';
+  }).join('');
+
+  $$('[data-tid]',listEl).forEach(function(b){
+    b.addEventListener('click',function(){ selectTender(b.dataset.tid); });
+  });
+}
+$('#tSearch').addEventListener('input',renderTenderSidebar);
+
+function selectTender(id){
+  var t=S.tenders.filter(function(x){return x.id===id;})[0]||S.tenders[0];
+  if(!t) return;
+  S.current=t;
+  renderTenderSidebar();
+
+  var d=$('#detail');
+  d.innerHTML='<div class="tender-banner-card">'+
+    '<div class="tender-banner-top">'+
+      '<div>'+
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'+
+          '<span class="badge badge-midnight">'+esc(t.authority)+'</span>'+
+          '<span class="badge badge-teal">'+esc(t.category)+'</span>'+
+          '<span class="text-secondary font-mono" style="font-size:12px;">ID: '+esc(t.id)+'</span>'+
+        '</div>'+
+        '<h2 class="tender-banner-title">'+esc(t.title)+'</h2>'+
+        (t.authority_full?'<p class="text-secondary" style="font-size:13.5px;margin-top:2px;">'+esc(t.authority_full)+'</p>':'')+
+      '</div>'+
+      '<button class="btn btn-teal btn-sm" type="button" id="screenBtn" '+(t.bidders.length<2?'disabled title="Requires multiple bids"':'')+'>'+
+        '&#9888; Screen for Collusion'+
+      '</button>'+
+    '</div>'+
+    '<div class="spec-box">'+
+      '<strong>Tender Specification:</strong> '+esc(t.spec)+
+    '</div>'+
+    '<div class="tender-financials-grid">'+
+      '<div class="tender-financial-item">'+
+        '<span class="tender-financial-label">Benchmark Estimate</span>'+
+        '<span class="tender-financial-value">'+short(t.benchmark_price)+'</span>'+
+      '</div>'+
+      '<div class="tender-financial-item">'+
+        '<span class="tender-financial-label">Minimum Turnover Required</span>'+
+        '<span class="tender-financial-value">'+short(t.min_turnover)+'</span>'+
+      '</div>'+
+      '<div class="tender-financial-item">'+
+        '<span class="tender-financial-label">Total Submissions</span>'+
+        '<span class="tender-financial-value">'+t.bidders.length+' Bids</span>'+
+      '</div>'+
+    '</div>'+
+    '<div style="font-size:12.5px;color:var(--text-secondary);line-height:1.4;">'+
+      '<strong>Required Statutory Documents:</strong> '+esc((t.required_documents||[]).join(', '))+'. '+
+      (t.oem_authorisation_required?'OEM Authorization required. ':'')+
+      (t.labour_services?'Labour services contract: EPFO &amp; ESIC verification required.':'Goods supply contract.')+
+    '</div>'+
+  '</div>'+
+
+  '<div id="colOut"></div>'+
+
+  '<div class="bids-table-card">'+
+    '<div class="bids-table-header">'+
+      '<h3 class="bids-table-title">Received Bids ('+t.bidders.length+')</h3>'+
+      '<span class="text-secondary" style="font-size:12px;">Select a bid to evaluate</span>'+
+    '</div>'+
+    '<div class="table-responsive">'+
+      '<table class="app-table">'+
+        '<thead>'+
+          '<tr>'+
+            '<th>Bidder Company</th>'+
+            '<th>Quoted Price</th>'+
+            '<th>Vs Benchmark</th>'+
+            '<th>Submitted</th>'+
+            '<th>Action</th>'+
+          '</tr>'+
+        '</thead>'+
+        '<tbody>'+
+          t.bidders.map(function(b,i){
+            var dev=(b.price&&t.benchmark_price)?((b.price-t.benchmark_price)/t.benchmark_price*100):null;
+            var tags=[];
+            (b.claims||[]).forEach(function(c){
+              tags.push('<span class="badge badge-teal" style="font-size:10px;">'+esc(c==='mse'?'MSE':c==='startup'?'Startup':'NSIC')+' Claimed</span>');
+            });
+            if(b.local_content_pct!=null) tags.push('<span class="badge badge-midnight" style="font-size:10px;">'+esc(b.local_content_pct)+'% Local</span>');
+            if(t.oem_authorisation_required) tags.push('<span class="badge badge-midnight" style="font-size:10px;">'+(b.oem&&b.oem.is_oem?'OEM':'Authorized Reseller')+'</span>');
+            if(!b.emd) tags.push('<span class="badge badge-warning" style="font-size:10px;">No EMD Paid</span>');
+
+            return '<tr>'+
+              '<td>'+
+                '<b>'+esc(b.name)+'</b>'+
+                '<div style="font-size:11.5px;color:var(--text-secondary);font-family:var(--font-mono);margin-top:2px;">'+
+                  (b.gstin?'GSTIN: '+b.gstin:'')+(b.address?' &middot; '+esc(b.address):'')+
+                '</div>'+
+                '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;">'+tags.join('')+'</div>'+
+              '</td>'+
+              '<td class="font-mono"><b>'+short(b.price)+'</b></td>'+
+              '<td class="font-mono '+(dev>0?'text-critical':'text-teal')+'">'+(dev===null?'-':(dev>0?'+':'')+dev.toFixed(1)+'%')+'</td>'+
+              '<td class="font-mono text-secondary" style="font-size:12px;">'+fmtTs(b.submitted_at)+'</td>'+
+              '<td>'+
+                '<button class="btn btn-teal btn-sm" type="button" data-eval="'+i+'">Evaluate &rarr;</button>'+
+              '</td>'+
+            '</tr>';
+          }}).join('')+
+        '</tbody>'+
+      '</table>'+
+    '</div>'+
+  '</div>'+
+
+  '<div id="evalArea"></div>';
+
+  $$('[data-eval]',d).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      evaluate(t, t.bidders[+btn.dataset.eval]);
+    });
+  }});
+
+  var sb=$('#screenBtn',d);
+  if(sb) sb.addEventListener('click',function(){ screenCollusion(t); });
+
+  // Re-render cached result if available
+  if(S.lastKey && S.lastKey.indexOf(t.id+'|')===0 && S.results[S.lastKey]){
+    renderResult(t, S.results[S.lastKey].bidder, S.results[S.lastKey].res);
+  }
+}
+
+/* ==========================================================================
+   EVALUATION EXECUTION & RESULT RENDERING
+   ========================================================================== */
+function evaluate(t, b){
+  var area=$('#evalArea');
+  area.scrollIntoView({behavior:'smooth',block:'start'});
+
+  area.innerHTML='<div class="thinking-box">'+
+    '<div class="spinner"></div>'+
+    '<h3 style="font-size:18px;font-weight:700;color:var(--midnight);">Evaluating '+esc(b.name)+'</h3>'+
+    '<p class="text-secondary" style="font-size:13.5px;">Executing 15 deterministic compliance checks and AI reasoning layer...</p>'+
+  '</div>';
+
+  var fallback=false;
+  var work=function(){
+    if(S.mode==='live'){
+      return api('/api/evaluate-seed?tender_id='+encodeURIComponent(t.id)+'&bidder_name='+encodeURIComponent(b.name),{timeout:60000}).then(null,function(e){
+        if(e.kind==='http'&&e.status===401) throw e;
+        fallback=true;
+        return E.evaluate(t.id, b.name, demoHistory());
+      });
+    }
+    return new Promise(function(res){
+      setTimeout(function(){ res(E.evaluate(t.id, b.name, demoHistory())); }, 600);
+    });
+  };
+
+  work().then(function(r){
+    var key=t.id+'|'+b.name;
+    if(S.mode==='demo'||fallback){
+      demoAudit.unshift({
+        ts: nowIso(), tender: t.id, bidder: b.name, score: r.compliance_score,
+        aiVerdict: r.verdict, risk: r.risk_level, officer: 'Pending', by: null, evaluatedBy: S.user
+      });
+    }
+
+    var res={
+      checks: r.checks,
+      score: r.compliance_score,
+      verdict: r.verdict,
+      risk: r.risk_level || (r.score_breakdown && r.score_breakdown.risk_level),
+      breakdown: r.score_breakdown,
+      reasoning: r.ai_reasoning,
+      source: fallback?'Demo engine fallback':r.ai_source,
+      local: S.mode==='demo'||fallback
+    };
+
+    S.results[key]={bidder:b, res:res};
+    S.lastKey=key;
+    delete S.decided[key];
+
+    renderResult(t, b, res);
+    renderDashboard(); // refresh stats
+  }, function(err){
+    area.innerHTML='<div class="callout callout-warning">Failed to complete evaluation: '+esc(err.message)+'</div>';
+  });
+}
+
+function renderResult(t, b, res){
+  var area=$('#evalArea'), key=t.id+'|'+b.name, dec=S.decided[key];
+  var nP=res.checks.filter(function(c){return c.status==='PASS';}).length;
+  var nF=res.checks.filter(function(c){return c.status==='FLAG';}).length;
+  var nX=res.checks.length - nP - nF;
+
+  var verdictColor=res.verdict==='Compliant'?'var(--success)':res.verdict==='Needs review'?'var(--warning)':'var(--critical)';
+  var riskBadgeClass=res.risk==='Low'?'badge-success':res.risk==='Medium'?'badge-warning':'badge-critical';
+
+  var lost=(res.breakdown&&res.breakdown.lost)||[];
+  var whyHtml=lost.length?
+    '<div class="why-not-100-box">'+
+      '<strong>Score Deductions (Why not 100):</strong> '+
+      lost.map(function(l){ return esc(l.name)+' (−'+(+l.points_lost)+' pts)'; }).join(', ')+
+      (res.breakdown.cap_reason?'. '+esc(res.breakdown.cap_reason):'.')+
+    '</div>':'';
+
+  area.innerHTML='<div class="eval-result-card">'+
+    '<div class="eval-overview-grid">'+
+      '<div class="score-display-box">'+
+        '<span class="text-secondary" style="font-size:12px;font-weight:700;text-transform:uppercase;">Compliance Score</span>'+
+        '<div class="score-big" style="color:'+verdictColor+'">'+res.score+'</div>'+
+        '<span class="score-max">/ 100 maximum</span>'+
+        '<div class="score-progress-bar">'+
+          '<div class="score-progress-fill" style="width:'+res.score+'%;background:'+verdictColor+';"></div>'+
+        '</div>'+
+      '</div>'+
+
+      '<div class="eval-details-box">'+
+        '<div style="display:flex;align-items:center;gap:10px;">'+
+          '<span class="eval-verdict-tag" style="color:'+verdictColor+'">'+esc(res.verdict)+'</span>'+
+          '<span class="badge '+riskBadgeClass+'">Risk: '+esc(res.risk||'Medium')+'</span>'+
+        '</div>'+
+        '<div class="eval-bidder-name">'+esc(b.name)+'</div>'+
+        '<div class="eval-meta-tags">'+
+          '<span class="badge badge-success">&#10003; '+nP+' Passed</span>'+
+          '<span class="badge badge-warning">&#9888; '+nF+' Flagged</span>'+
+          '<span class="badge badge-critical">&#10007; '+nX+' Failed</span>'+
+          '<span class="text-secondary" style="font-size:12px;">Engine: '+esc(res.source||'Deterministic')+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+
+    whyHtml+
+
+    '<div class="eval-checks-group">'+
+      '<h4 class="eval-checks-title">Detailed Check-by-Check Results (15 Checks)</h4>'+
+      groupChecks(res.checks)+
+    '</div>'+
+
+    '<div class="reasoning-box">'+
+      '<div class="reasoning-header">'+
+        '<span class="reasoning-title">AI Recommendation &amp; Synthesis</span>'+
+        '<span class="badge badge-midnight">Advisory Only</span>'+
+      '</div>'+
+      '<p class="reasoning-text">'+esc(res.reasoning)+'</p>'+
+    '</div>'+
+
+    '<div class="doc-check-box">'+
+      '<div class="doc-check-header">PDF Document Extraction &amp; Identifier Cross-Check</div>'+
+      '<p class="doc-check-desc">Extract text from bid registration certificates and cross-check PAN, GSTIN, and legal name.</p>'+
+      '<div class="doc-action-row">'+
+        '<label class="btn btn-secondary btn-sm" for="docFile">Choose PDF Document</label>'+
+        '<input type="file" id="docFile" accept="application/pdf" hidden>'+
+        '<span class="text-secondary font-mono" id="docName" style="font-size:12px;">No file selected</span>'+
+        '<button class="btn btn-teal btn-sm" id="docGo" type="button" disabled>Extract &amp; Verify</button>'+
+      '</div>'+
+      '<div style="font-size:12.5px;color:var(--text-secondary);display:flex;gap:6px;align-items:center;flex-wrap:wrap;">'+
+        '<span>Quick test sample documents:</span>'+
+        '<button type="button" class="sample-doc-pill" data-sample="petrotech-registration-sample.pdf">Petrotech Sample</button>'+
+        '<button type="button" class="sample-doc-pill" data-sample="vantage-registration-sample.pdf">Vantage Sample</button>'+
+        '<button type="button" class="sample-doc-pill" data-sample="trident-registration-sample.pdf">Trident Sample</button>'+
+      '</div>'+
+      '<div id="docOut" style="margin-top:14px;"></div>'+
+    '</div>'+
+
+    '<div class="decision-box">'+
+      '<h4 class="decision-title">Record Officer Decision</h4>'+
+      '<p class="decision-desc">Officer: <b>'+esc(S.user)+'</b> ('+esc(ROLE_LABEL[S.role]||S.role)+'). Tap decision twice to confirm.</p>'+
+      '<div class="decision-buttons" id="decRow">'+
+        E.decisions.map(function(d){
+          return '<button type="button" class="btn-dec" data-dec="'+esc(d)+'" '+(dec?'disabled':'')+'>'+esc(d)+'</button>';
+        }).join('')+
+      '</div>'+
+      '<div id="ovr"></div>'+
+      '<p class="text-secondary" style="font-size:12.5px;margin-top:10px;" id="decNote">'+
+        (dec?'Official decision recorded on audit trail.':'Recorded decisions are permanently stamped in the access log.')+
+      '</p>'+
+      (dec?renderStampHtml(dec.decision, dec.by, dec.ts):'')+
+    '</div>'+
+  '</div>';
+
+  wireDocCheck(t, b, area);
+
+  var armedBtn=null, armTimer=0;
+  $$('[data-dec]', area).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var d=btn.dataset.dec;
+      if(armedBtn!==btn){
+        if(armedBtn){ armedBtn.classList.remove('armed'); armedBtn.textContent=armedBtn.dataset.dec; }
+        armedBtn=btn; btn.classList.add('armed'); btn.textContent='Confirm: '+d;
+        clearTimeout(armTimer);
+        armTimer=setTimeout(function(){
+          if(armedBtn){ armedBtn.classList.remove('armed'); armedBtn.textContent=armedBtn.dataset.dec; armedBtn=null; }
+        }, 4000);
+        return;
+      }}
+      clearTimeout(armTimer); btn.classList.remove('armed'); btn.textContent=d; armedBtn=null;
+
+      if(d==='Qualified' && res.verdict!=='Compliant'){
+        return overridePanel(t, b, res, area);
+      }
+      recordDecision(t, b, res, d, '', area);
+    });
+  });
+}
+
+function groupChecks(checks){
+  var fams=[];
+  checks.forEach(function(c){
+    var f=c.family||'Checks';
+    if(fams.indexOf(f)<0) fams.push(f);
+  });
+
+  return fams.map(function(f){
+    var list=checks.filter(function(c){ return (c.family||'Checks')===f; });
+    var np=list.filter(function(c){ return c.status==='PASS'; }).length;
+    return '<div style="margin-top:8px;">'+
+      '<div style="font-size:13px;font-weight:700;color:var(--midnight);margin-bottom:6px;display:flex;justify-content:space-between;">'+
+        '<span>'+esc(f)+'</span><span class="text-secondary font-mono">'+np+'/'+list.length+' Passed</span>'+
+      '</div>'+
+      '<div style="display:flex;flex-direction:column;gap:6px;">'+
+        list.map(function(c){
+          var stCls=c.status==='PASS'?'status-pass':c.status==='FLAG'?'status-flag':'status-fail';
+          return '<div class="eval-check-row">'+
+            '<span class="check-status-badge '+stCls+'">'+(c.status==='PASS'?'✓':c.status==='FLAG'?'!':'✕')+'</span>'+
+            '<div>'+
+              '<div style="font-weight:700;font-size:13.5px;color:var(--text-primary);">'+esc(c.name)+'</div>'+
+              '<div style="font-size:12.5px;color:var(--text-secondary);margin-top:2px;">'+esc(c.reason)+'</div>'+
+              (c.source?'<span class="badge badge-midnight" style="font-size:10px;margin-top:4px;">Source: '+esc(c.source)+'</span>':'')+
+            '</div>'+
+            '<div style="text-align:right;">'+
+              '<span class="check-status-badge '+stCls+'">'+esc(c.status)+'</span>'+
+              (c.weight!=null?'<div class="font-mono text-secondary" style="font-size:11px;margin-top:4px;">'+(+c.points)+'/'+c.weight+' pts</div>':'')+
+            '</div>'+
+          '</div>';
+        }).join('')+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderStampHtml(decision, by, ts){
+  var cls=decision==='Qualified'?'stamp-qualified':decision==='Request Clarification'?'stamp-clarify':decision==='Hold for Review'?'stamp-hold':'stamp-non';
+  return '<div class="official-stamp '+cls+'">'+
+    '<div class="stamp-action">'+esc(decision)+'</div>'+
+    '<div class="stamp-meta">By '+esc(by)+' &middot; '+esc(fmtTs(ts))+'</div>'+
+  '</div>';
+}
+
+function overridePanel(t, b, res, area){
+  var box=$('#ovr', area), min=E.overrideMin;
+  if(S.role==='officer'){
+    box.innerHTML='<div class="override-container">'+
+      '<div class="override-title">&#9888; Senior Approver Authorization Required</div>'+
+      '<p class="override-text">This bid was evaluated as <b>'+esc(res.verdict)+'</b>. Only a Senior Approver or Admin can record Qualified. Record <b>Hold for Review</b> to escalate.</p>'+
+    '</div>';
+    return;
+  }
+
+  box.innerHTML='<div class="override-container">'+
+    '<div class="override-title">Written Override Justification</div>'+
+    '<p class="override-text">You are overriding an advisory <b>'+esc(res.verdict)+'</b> verdict to Qualify. Regulatory compliance requires a written explanation of at least '+min+' characters.</p>'+
+    '<div class="form-group">'+
+      '<textarea class="form-textarea" id="ovrTxt" maxlength="600" placeholder="State operational and technical grounds for qualifying this bid..."></textarea>'+
+    '</div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;">'+
+      '<button type="button" class="btn btn-teal btn-sm" id="ovrGo" disabled>Submit Written Override</button>'+
+      '<span class="text-secondary font-mono" id="ovrCount" style="font-size:12px;">0 / '+min+' characters</span>'+
+    '</div>'+
+  '</div>';
+
+  var ta=$('#ovrTxt', box), go=$('#ovrGo', box), cnt=$('#ovrCount', box);
+  ta.addEventListener('input', function(){
+    var len=ta.value.trim().length;
+    cnt.textContent=len+' / '+min+' characters';
+    go.disabled=len<min;
+  });
+  go.addEventListener('click', function(){
+    recordDecision(t, b, res, 'Qualified', ta.value.trim(), area);
+  });
+  ta.focus();
+}
+
+function recordDecision(t, b, res, decision, reason, area){
+  $$('[data-dec]', area).forEach(function(x){x.disabled=true;});
+  var note=$('#decNote', area);
+
+  var finish=function(msg, ts){
+    S.decided[t.id+'|'+b.name]={decision:decision, by:S.user, ts:ts};
+    note.textContent=msg;
+    $('#ovr', area).innerHTML='';
+    var oldStamp=$('.official-stamp', area);
+    if(oldStamp) oldStamp.remove();
+    var box=$('.decision-box', area);
+    box.insertAdjacentHTML('beforeend', renderStampHtml(decision, S.user, ts));
+    toast('Decision recorded: '+decision);
+    renderDashboard();
+  };
+
+  var local=function(){
+    var row=demoAudit.filter(function(r){return r.tender===t.id&&r.bidder===b.name;})[0];
+    var ts=nowIso();
+    if(row){
+      row.officer=decision; row.by=S.user; row.role=S.role; row.overrideReason=reason||null; row.decidedAt=ts;
+    }
+    finish('Recorded in offline demo audit log.', ts);
+  };
+
+  if(S.mode==='live' && !res.local){
+    api('/api/officer-decision',{method:'POST',body:{tender_id:t.id,bidder_name:b.name,decision:decision,override_reason:reason||null}})
+      .then(function(r){ finish('Recorded securely in server audit log.', r.ts||nowIso()); }, function(e){
+        if(e.kind==='http'){
+          note.textContent=e.message;
+          $$('[data-dec]', area).forEach(function(x){x.disabled=false;});
+          if(e.status===422||e.status===403) overridePanel(t, b, res, area);
+          return;
+        }
+        local();
+      });
+  } else {
+    local();
+  }
+}
+
+function wireDocCheck(t, b, area){
+  var inp=$('#docFile', area), go=$('#docGo', area), nm=$('#docName', area), out=$('#docOut', area), file=null;
+  var paint=function(r){
+    var rows=r.fields||[];
+    out.innerHTML='<div class="card" style="padding:16px;">'+
+      '<div style="font-weight:700;margin-bottom:8px;">'+esc(r.summary)+'</div>'+
+      (rows.length?
+        '<div class="table-responsive"><table class="app-table"><thead><tr><th>Document Field</th><th>Extracted From PDF</th><th>On Bid Form</th><th>Verification</th></tr></thead><tbody>'+
+        rows.map(function(x){
+          var isMatch=x.status==='MATCH';
+          return '<tr>'+
+            '<td><b>'+esc(x.field)+'</b></td>'+
+            '<td class="font-mono">'+esc(x.found)+'</td>'+
+            '<td class="font-mono">'+esc(x.on_bid)+'</td>'+
+            '<td><span class="badge '+(isMatch?'badge-success':'badge-critical')+'">'+esc(x.status)+'</span>'+(x.note?'<div style="font-size:11px;color:var(--text-secondary);margin-top:2px;">'+esc(x.note)+'</div>':'')+'</td>'+
+          '</tr>';
+        }).join('')+'</tbody></table></div>':'')+
+      '<div class="text-secondary font-mono" style="font-size:11.5px;margin-top:10px;">File: '+esc(r.filename||'')+ (r.pages?' &middot; '+r.pages+' page(s)':'')+' &middot; Check logged in access trail</div>'+
+    '</div>';
+  };
+
+  var send=function(blob, name){
+    if(S.mode!=='live'||!S.token){
+      out.innerHTML='<div class="callout callout-warning">Document text extraction requires the active backend service.</div>';
+      return;
+    }
+    go.disabled=true;
+    out.innerHTML='<div class="text-secondary" style="font-size:13px;">Analyzing '+esc(name)+'...</div>';
+    var fd=new FormData();
+    fd.append('tender_id', t.id); fd.append('bidder_name', b.name); fd.append('file', blob, name);
+
+    fetch(apiBase()+'/api/documents/extract',{method:'POST',headers:{'Authorization':'Bearer '+S.token},body:fd})
+      .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(typeof j.detail==='string'?j.detail:'Could not parse file.'); return j; }); })
+      .then(paint, function(e){
+        out.innerHTML='<div class="callout callout-warning">'+esc(e.message||'Document reading failed.')+'</div>';
+      }}).then(function(){ go.disabled=!file; });
+  };
+
+  inp.addEventListener('change',function(){
+    file=inp.files&&inp.files[0];
+    nm.textContent=file?file.name:'No file selected';
+    go.disabled=!file;
+  });
+  go.addEventListener('click',function(){ if(file) send(file, file.name); });
+
+  $$('[data-sample]', area).forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var sf=btn.dataset.sample;
+      nm.textContent=sf;
+      fetch('samples/'+sf).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
+        .then(function(bl){ send(bl, sf); }, function(){ out.innerHTML='<div class="text-secondary">Sample file not loaded.</div>'; });
+    });
+  });
+}
+
+/* ==========================================================================
+   COLLUSION SCREENING
+   ========================================================================== */
+function screenCollusion(t){
+  var out=$('#colOut'), btn=$('#screenBtn');
+  btn.disabled=true;
+  var fb=false;
+
+  var work=function(){
+    if(S.mode==='live'){
+      return api('/api/collusion-check?tender_id='+encodeURIComponent(t.id),{timeout:15000}).then(null,function(){
+        fb=true; return E.screen(t.id);
+      });
+    }
+    return new Promise(function(res){
+      setTimeout(function(){ res(E.screen(t.id)); }, 400);
+    });
+  };
+
+  work().then(function(r){
+    btn.disabled=false;
+    var list=r.findings||[], clean=!list.length, th=r.thresholds||{};
+    out.innerHTML='<div class="collusion-box">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;">'+
+        '<h4 style="font-size:16px;font-weight:700;color:var(--midnight);">Collusion Screen: '+esc(t.title)+'</h4>'+
+        '<span class="badge '+(clean?'badge-success':'badge-warning')+'">'+(clean?'No Suspicious Signals Detected':list.length+' Potential Signal(s) Found')+'</span>'+
+      '</div>'+
+      (clean?
+        '<div style="font-size:13.5px;color:var(--text-secondary);padding:12px;background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius-sm);">'+
+          '&#10003; Normal competitive spread: No tight price clusters, overlapping addresses, or cover bidding detected across '+r.pairs_compared+' pairwise comparisons.'+
+        '</div>':
+        '<div style="display:flex;flex-direction:column;gap:8px;">'+
+          list.map(function(f){
+            var isCrit=f.severity==='FAIL'||f.severity==='CRITICAL';
+            return '<div style="padding:10px 14px;background:'+(isCrit?'var(--critical-bg)':'var(--warning-bg)')+';border:1px solid '+(isCrit?'var(--critical-border)':'var(--warning-border)')+';border-radius:var(--radius-sm);display:flex;justify-content:space-between;align-items:center;">'+
+              '<div><b>'+esc(f.signal)+'</b><div style="font-size:12.5px;color:var(--text-secondary);margin-top:2px;">'+esc(f.detail)+'</div></div>'+
+              '<span class="badge '+(isCrit?'badge-critical':'badge-warning')+'">'+esc(f.severity)+'</span>'+
+            '</div>';
+          }).join('')+
+        '</div>')+
+      '<div style="font-size:12px;color:var(--text-secondary);">Thresholds evaluated: Price cluster &lt;'+th.price_gap_pct+'%, timing &lt;'+th.timing_minutes+'m, cover bid &gt;'+th.cover_bid_pct+'%. Disclaimer: Statistical warning flags require officer clarification.</div>'+
+    '</div>';
+    out.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+/* ==========================================================================
+   REGISTRIES LOGIC
+   ========================================================================== */
+function regCards(adapters){
+  return adapters.map(function(a){
+    return '<div class="registry-card">'+
+      '<div class="registry-top">'+
+        '<h4 class="registry-name">'+esc(a.source)+'</h4>'+
+        '<span class="badge badge-warning">Simulated Demo</span>'+
+      '</div>'+
+      '<div class="registry-verifies">'+esc(a.verifies)+'</div>'+
+      '<div class="registry-live">Live Gateway: '+esc(a.live)+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function loadRegistries(){
+  var paint=function(r){
+    $('#regView').innerHTML=regCards(r.adapters);
+    $('#regModeBadge').textContent=r.adapters.length+' Sources (Simulated)';
+  };
+  if(S.mode==='live'){
+    api('/api/registries').then(paint, function(){
+      paint({adapters:E.adapters, mode:E.mode});
+    });
+  } else {
+    paint({adapters:E.adapters, mode:E.mode});
+  }
+}
+
+/* ==========================================================================
+   AUDIT LOG LOGIC
+   ========================================================================== */
+var auditFilterKeyword='';
+function loadAudit(){
+  var body=$('#auditBody');
+  var paint=function(rows){
+    var filtered=rows.filter(function(r){
+      if(!auditFilterKeyword) return true;
+      var str=(r.tender+' '+r.bidder+' '+(r.officer||'')+' '+(r.by||'')).toLowerCase();
+      return str.indexOf(auditFilterKeyword)>=0;
+    });
+
+    if(!filtered.length){
+      body.innerHTML='<tr><td colspan="8" class="text-secondary" style="text-align:center;padding:24px;">No evaluation records found.</td></tr>';
+      return;
+    }
+
+    body.innerHTML=filtered.map(function(r){
+      var d=r.officer||'Pending';
+      var dBadge=d==='Qualified'?'badge-success':d==='Mark Non-Compliant'?'badge-critical':d==='Hold for Review'?'badge-warning':'badge-midnight';
+      var rBadge=r.risk==='Low'?'badge-success':r.risk==='Medium'?'badge-warning':'badge-critical';
+
+      return '<tr>'+
+        '<td class="font-mono text-secondary" style="font-size:12px;">'+esc(fmtTs(r.decidedAt||r.ts))+'</td>'+
+        '<td class="font-mono"><b>'+esc(r.tender)+'</b></td>'+
+        '<td>'+esc(r.bidder)+(r.anonymised?' <span class="badge badge-midnight" style="font-size:9.5px;">Anonymised</span>':'')+'</td>'+
+        '<td class="font-mono"><b>'+esc(r.score==null?'-':r.score)+'</b></td>'+
+        '<td><span class="badge '+rBadge+'" style="font-size:11px;">'+esc(r.risk||'-')+'</span></td>'+
+        '<td>'+esc(r.aiVerdict||'-')+'</td>'+
+        '<td><span class="badge '+dBadge+'">'+esc(d)+'</span>'+(r.overrideReason?'<div style="font-size:11px;color:var(--text-secondary);margin-top:2px;">Override: '+esc(r.overrideReason)+'</div>':'')+'</td>'+
+        '<td class="font-mono text-secondary" style="font-size:12px;">'+esc(r.by||r.evaluatedBy||'-')+'</td>'+
+      '</tr>';
+    }).join('');
+  };
+
+  var eb=$('#exportBtn'), en=$('#exportNote'), isAdmin=S.role==='admin';
+  eb.disabled=!isAdmin;
+  en.textContent=isAdmin?'Admin privileges active: Exports and resets are permanently logged.':'Administrator authorization required for export/reset.';
+  $('#exportBox').hidden=true;
+
+  var rb=$('#resetBtn');
+  rb.hidden=!isAdmin;
+  rb.disabled=false;
+
+  if(S.mode==='live'){
+    api('/api/audit-log').then(function(r){ paint(Array.isArray(r)?r:[]); }, function(){
+      paint(demoAudit);
+    });
+  } else {
+    paint(demoAudit);
+  }
+}
+
+$('#auditSearch').addEventListener('input', function(){
+  auditFilterKeyword=this.value.trim().toLowerCase();
+  loadAudit();
+});
+
+$('#exportBtn').addEventListener('click',function(){
+  if(S.role!=='admin') return;
+  var box=$('#exportBox'), txt=$('#exportTxt');
+  var show=function(data){
+    txt.value=JSON.stringify(data, null, 2);
+    box.hidden=false;
+    $('#copyNote').textContent='';
+  };
+  if(S.mode==='live') api('/api/audit-log/export').then(show, function(e){ toast(e.message||'Export failed.'); });
+  else show({exported_at:nowIso(), exported_by:S.user, records:demoAudit});
+});
+
+var resetArmed=false, resetTimer=0;
+$('#resetBtn').addEventListener('click',function(){
+  var rb=this;
+  if(S.role!=='admin') return;
+  if(!resetArmed){
+    resetArmed=true;
+    rb.textContent='Confirm: Reset All Demo Data';
+    clearTimeout(resetTimer);
+    resetTimer=setTimeout(function(){ resetArmed=false; rb.textContent='Reset Demo Data'; }, 4000);
+    return;
+  }
+  clearTimeout(resetTimer);
+  rb.disabled=true;
+
+  var done=function(n){
+    S.results={}; S.decided={}; S.lastKey=null;
+    toast('Audit records reset ('+n+' cleared). Logged in access trail.');
+    loadAudit();
+    renderDashboard();
+  };
+
+  if(S.mode==='live'){
+    api('/api/admin/reset-demo',{method:'POST'}).then(function(r){ done(r.cleared); }, function(e){
+      rb.disabled=false; toast(e.message||'Reset failed.');
+    }});
+  } else {
+    var n=demoAudit.length; demoAudit.length=0; done(n);
+  }
+});
+
+$('#copyExport').addEventListener('click',function(){
+  var txt=$('#exportTxt'), note=$('#copyNote');
+  try{
+    navigator.clipboard.writeText(txt.value).then(function(){ note.textContent='Copied to clipboard!'; });
+  }catch(_){
+    txt.select(); note.textContent='Selected. Press Ctrl+C to copy.';
+  }
+});
+
+/* Public site checks & registries render */
+function renderPublicSiteData(){
+  var cGrid=$('#checksFamGrid');
+  if(cGrid){
+    cGrid.innerHTML=E.families.map(function(f){
+      var checks=E.checks.filter(function(c){return c.family===f;});
+      var pts=0; checks.forEach(function(c){ pts+=c.weight; });
+      return '<div class="family-card">'+
+        '<div class="family-header">'+
+          '<h3 class="family-name">'+esc(f)+'</h3>'+
+          '<span class="badge badge-teal">'+pts+' pts total</span>'+
+        '</div>'+
+        '<div class="checks-list">'+
+          checks.map(function(c){
+            return '<div class="check-item">'+
+              '<div>'+
+                '<div class="check-name">'+esc(c.name)+'</div>'+
+                '<div class="check-sub">'+esc(c.family)+'</div>'+
+              '</div>'+
+              '<div class="check-weight">'+c.weight+' pts</div>'+
+            '</div>';
+          }).join('')+
+        '</div>'+
+      '</div>';
+    }).join('');
+  }
+
+  var rGrid=$('#publicRegGrid');
+  if(rGrid){
+    rGrid.innerHTML=regCards(E.adapters);
+  }
+}
+renderPublicSiteData();
+
+if(location.hash==='#workstation') openWS();
+})();
+</script>
+</body>
+</html>

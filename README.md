@@ -1,20 +1,20 @@
 <p align="center">
-  <img src="assets/readme/hero.svg" alt="Procurement Pilot: fifteen checks on every bid, before anyone signs." width="100%">
+  <img src="assets/readme/hero.svg" alt="BidShield AI: fifteen checks on every bid, before anyone signs." width="100%">
 </p>
 
 <p align="center">
-  <a href="https://procurement-pilot-sih.vercel.app"><img alt="Live" src="https://img.shields.io/badge/live-procurement--pilot--sih.vercel.app-FF9933?style=flat-square&labelColor=111010&logo=vercel&logoColor=FBF8F2"></a>
-  <a href="https://youtu.be/D4A3Fv-sczU"><img alt="Demo video" src="https://img.shields.io/badge/demo-4%3A52-C8102E?style=flat-square&labelColor=111010&logo=youtube&logoColor=FBF8F2"></a>
-  <img alt="SIH 2026 SIH26100" src="https://img.shields.io/badge/SIH%202026-SIH26100-138808?style=flat-square&labelColor=111010">
-  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-FBF8F2?style=flat-square&labelColor=111010&logo=python&logoColor=FBF8F2">
-  <img alt="FastAPI" src="https://img.shields.io/badge/api-FastAPI-FBF8F2?style=flat-square&labelColor=111010&logo=fastapi&logoColor=FBF8F2">
-  <img alt="Postgres on Neon" src="https://img.shields.io/badge/db-Postgres%20(Neon)-FBF8F2?style=flat-square&labelColor=111010&logo=postgresql&logoColor=FBF8F2">
+  <a href="https://procurement-pilot-sih.vercel.app"><img alt="Live" src="https://img.shields.io/badge/live-BidShield%20AI-0F766E?style=flat-square&labelColor=282B4A&logo=vercel&logoColor=FFFFFF"></a>
+  <a href="https://youtu.be/D4A3Fv-sczU"><img alt="Demo video" src="https://img.shields.io/badge/demo-4%3A52-B91C1C?style=flat-square&labelColor=282B4A&logo=youtube&logoColor=FFFFFF"></a>
+  <img alt="SIH 2026 SIH26100" src="https://img.shields.io/badge/SIH%202026-SIH26100-15803D?style=flat-square&labelColor=282B4A">
+  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11%2B-EEEBDA?style=flat-square&labelColor=282B4A&logo=python&logoColor=282B4A">
+  <img alt="FastAPI" src="https://img.shields.io/badge/api-FastAPI-EEEBDA?style=flat-square&labelColor=282B4A&logo=fastapi&logoColor=282B4A">
+  <img alt="Postgres on Neon" src="https://img.shields.io/badge/db-Postgres%20(Neon)-EEEBDA?style=flat-square&labelColor=282B4A&logo=postgresql&logoColor=282B4A">
   <a href="https://github.com/victorisaacchinta-eng/procurement-pilot-sih/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/victorisaacchinta-eng/procurement-pilot-sih/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="26 API tests" src="https://img.shields.io/badge/tests-26%20API%20%2B%20parity-138808?style=flat-square&labelColor=111010">
-  <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-FF9933?style=flat-square&labelColor=111010">
+  <img alt="26 API tests" src="https://img.shields.io/badge/tests-26%20API%20%2B%20parity-15803D?style=flat-square&labelColor=282B4A">
+  <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-0F766E?style=flat-square&labelColor=282B4A">
 </p>
 
-<h3 align="center">Registry-verified bid compliance for government procurement.<br>Code decides. AI explains. A named officer signs.</h3>
+<h3 align="center">BidShield AI — Intelligent Procurement Compliance Platform<br>Registry-verified bid compliance for government procurement.<br>Code decides. AI explains. A named officer signs.</h3>
 
 <p align="center"><a href="https://procurement-pilot-sih.vercel.app"><b>procurement-pilot-sih.vercel.app</b></a> &nbsp;·&nbsp; <a href="https://youtu.be/D4A3Fv-sczU"><b>watch the 4:52 demo</b></a></p>
 
@@ -32,7 +32,7 @@
 
 A procurement officer checking a GeM bid today opens portal after portal: GST, income tax, MCA21, Udyam, EPFO,
 the debarment list, then the bid documents themselves. It is slow, and two officers can reach two different answers
-on the same bid. Procurement Pilot runs **fifteen fixed checks** on every bid against **ten registry sources**,
+on the same bid. BidShield AI runs **fifteen fixed checks** on every bid against **ten registry sources**,
 scores it out of 100 with a risk level, explains every flag in plain language, and leaves the decision, and the
 signature, to a named officer. Built by **Team Ace Azael** (ACE Engineering College, Hyderabad) for
 **Smart India Hackathon 2026**, problem statement **SIH26100** from the Ministry of Petroleum and Natural Gas.
@@ -45,7 +45,7 @@ signature, to a named officer. Built by **Team Ace Azael** (ACE Engineering Coll
 ## ◆ See it
 
 <p align="center">
-  <a href="https://youtu.be/D4A3Fv-sczU"><img src="assets/readme/video.jpg" width="100%" alt="Watch the Procurement Pilot demo on YouTube (4:52)"></a>
+  <a href="https://youtu.be/D4A3Fv-sczU"><img src="assets/readme/video.jpg" width="100%" alt="Watch the BidShield AI demo on YouTube (4:52)"></a>
   <br><sub>The full walkthrough on YouTube, 4:52.</sub>
 </p>
 
