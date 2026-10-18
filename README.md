@@ -1,5 +1,3 @@
-# BidShield AI — Intelligent Procurement Compliance Platform
-
 <p align="center">
   <img src="assets/readme/hero.svg" alt="BidShield AI: fifteen checks on every bid, before anyone signs." width="100%">
 </p>
