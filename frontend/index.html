@@ -314,11 +314,31 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Hero Section */
+/* ==========================================================================
+   HERO SECTION (TWO-COLUMN RESPONSIVE LAYOUT)
+   ========================================================================== */
 .hero-section {
-  padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px);
-  max-width: 1200px;
+  padding: clamp(36px, 6vw, 72px) clamp(16px, 4vw, 48px);
+  max-width: 1240px;
   margin: 0 auto;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
+  gap: clamp(28px, 4vw, 52px);
+  align-items: center;
+  margin-bottom: 48px;
+}
+@media (max-width: 980px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
 }
 .hero-pill {
   display: inline-flex;
@@ -329,42 +349,537 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--vanilla-dark);
   padding: 6px 14px;
   border-radius: 9999px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 .hero-pill-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--teal);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
 }
 .hero-title {
-  font-size: clamp(38px, 6vw, 64px);
+  font-size: clamp(34px, 4.6vw, 54px);
   font-weight: 800;
   color: var(--midnight);
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .hero-tagline {
-  font-size: clamp(18px, 2.5vw, 24px);
+  font-size: clamp(17px, 2.2vw, 22px);
   font-weight: 600;
   color: var(--teal);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  line-height: 1.3;
 }
 .hero-desc {
-  font-size: clamp(16px, 1.8vw, 19px);
+  font-size: clamp(15px, 1.3vw, 17px);
   color: var(--text-secondary);
-  max-width: 760px;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 48px;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.trust-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+/* ==========================================================================
+   INTERACTIVE BID RISK ANALYZER (HERO VISUALIZATION)
+   ========================================================================== */
+.hero-visual {
+  perspective: 1000px;
+}
+.hero-analyzer-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 30px -10px rgba(40, 43, 74, 0.12), 0 2px 8px -2px rgba(40, 43, 74, 0.05);
+  overflow: hidden;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.hero-analyzer-card:hover {
+  border-color: rgba(15, 118, 110, 0.45);
+  box-shadow: 0 20px 42px -12px rgba(40, 43, 74, 0.18), 0 0 0 1px rgba(15, 118, 110, 0.25);
+}
+
+/* Topbar */
+.analyzer-topbar {
+  background: var(--midnight);
+  color: var(--white);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.analyzer-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.live-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: beaconPulse 2s infinite;
+}
+@keyframes beaconPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.analyzer-topbar-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+.analyzer-topbar-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge-demo {
+  background: rgba(238, 235, 218, 0.18);
+  color: var(--vanilla);
+  border: 1px solid rgba(238, 235, 218, 0.35);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Connected Node Process Illustration */
+.analyzer-pipeline {
+  background: #F8F9FC;
+  border-bottom: 1px solid var(--border);
+  padding: 9px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.pipeline-node {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+.pipeline-node.active {
+  color: var(--teal);
+}
+.pipeline-node-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  background: var(--border);
+  color: var(--text-secondary);
+}
+.pipeline-node.active .pipeline-node-icon {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.25);
+}
+.pipeline-connector {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+  max-width: 60px;
+}
+.pipeline-connector::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  animation: connectorFlow 2.5s infinite;
+}
+@keyframes connectorFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Sample Bid Selector Tabs */
+.sample-bid-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--vanilla-shell);
+  border-bottom: 1px solid var(--border);
+  padding: 4px;
+  gap: 4px;
+}
+.sample-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 7px 8px;
+  text-align: left;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sample-tab-btn:hover {
+  background: var(--white);
+  border-color: var(--border);
+}
+.sample-tab-btn.active {
+  background: var(--white);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.sample-tab-label {
+  font-weight: 700;
+  color: var(--midnight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sample-tab-tag {
+  font-size: 9.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Card Body */
+.analyzer-body {
+  padding: 16px 18px;
+}
+.bid-overview-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 480px) {
+  .bid-overview-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+.bid-meta-tender {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.bid-meta-bidder {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--midnight);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.bid-meta-identifiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+.bid-meta-pill {
+  background: var(--vanilla-shell);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Radial Gauge */
+.score-gauge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gauge-svg-box {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  flex: none;
+}
+.gauge-svg-box svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+.gauge-bg {
+  stroke: #E2E8F0;
+}
+.gauge-progress {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
+}
+.gauge-center-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.gauge-score-num {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--midnight);
+}
+.gauge-score-total {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.gauge-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.risk-badge-lg {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+.check-counters {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.counter-pass { color: var(--success); }
+.counter-flag { color: var(--warning); }
+.counter-fail { color: var(--critical); }
+
+/* Compact Checklist */
+.compact-checks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 8px;
+}
+.compact-checks-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+.compact-checks-hint {
+  font-size: 10.5px;
+  color: var(--teal);
+  font-weight: 600;
+}
+.compact-checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hero-check-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  outline: none;
+}
+.hero-check-item:hover, .hero-check-item:focus-visible {
+  border-color: var(--teal);
+  background: rgba(15, 118, 110, 0.03);
+  box-shadow: 0 2px 6px -2px rgba(15, 118, 110, 0.15);
+}
+.hero-check-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--teal);
+}
+.check-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.check-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.check-dot-icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  flex: none;
+}
+.check-name-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.check-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+.check-chevron {
+  font-size: 10px;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+.hero-check-item.expanded .check-chevron {
+  transform: rotate(180deg);
+}
+.check-expanded-detail {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  display: none;
+  animation: fadeIn 0.2s ease-out;
+}
+.hero-check-item.expanded .check-expanded-detail {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* AI Explanation Box */
+.hero-ai-box {
+  margin-top: 12px;
+  padding: 11px 13px;
+  background: var(--vanilla-shell);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 10px;
+}
+.ai-icon-bubble {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  font-size: 11px;
+}
+.ai-box-content {
+  flex: 1;
+}
+.ai-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+.ai-box-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--midnight);
+}
+.ai-box-tag {
+  font-size: 9.5px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 9999px;
+  color: var(--teal);
+  font-weight: 600;
+}
+.ai-box-text {
+  font-size: 11.5px;
+  color: var(--text-primary);
+  line-height: 1.45;
+  margin: 0;
+}
+.ai-box-sub {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-analyzer-card, .gauge-progress, .live-beacon, .pipeline-connector::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Metric Highlights Bar */
@@ -1555,23 +2070,149 @@ a { color: inherit; text-decoration: none; }
 <main id="site">
   <!-- HERO SECTION -->
   <section class="hero-section">
-    <div class="hero-pill">
-      <span class="hero-pill-dot"></span>
-      SIH26100 &middot; Ministry of Petroleum &amp; Natural Gas &middot; Team Ace Azael
-    </div>
-    <h1 class="hero-title">BidShield AI</h1>
-    <h2 class="hero-tagline">Intelligent Procurement Compliance Platform</h2>
-    <p class="hero-desc">
-      Automated, registry-verified bid compliance for government procurement. Fifteen deterministic checks verify every tender submission across ten national databases before a named officer signs. Code decides. AI explains. A human officer signs on the record.
-    </p>
+    <div class="hero-grid">
+      <!-- LEFT COLUMN -->
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          SIH26100 &middot; Ministry of Petroleum &amp; Natural Gas &middot; Team Ace Azael
+        </div>
+        <h1 class="hero-title">BidShield AI</h1>
+        <h2 class="hero-tagline">Intelligent Procurement Compliance Platform</h2>
+        <p class="hero-desc">
+          Automated, registry-verified bid compliance for government procurement. Fifteen deterministic checks verify every tender submission across ten national databases before a named officer signs. Code decides. AI explains. A human officer signs on the record.
+        </p>
 
-    <div class="hero-actions">
-      <button class="btn btn-teal" data-open-ws type="button" style="padding:12px 24px;font-size:15px;">
-        Open Workstation &rarr;
-      </button>
-      <a class="btn btn-secondary" href="#pipeline" style="padding:12px 24px;font-size:15px;">
-        Explore How It Works
-      </a>
+        <div class="hero-actions">
+          <button class="btn btn-teal" data-open-ws type="button" style="padding:12px 24px;font-size:15px;">
+            Open Workstation &rarr;
+          </button>
+          <a class="btn btn-secondary" href="#pipeline" style="padding:12px 24px;font-size:15px;">
+            Explore How It Works
+          </a>
+        </div>
+
+        <div class="hero-trust-row">
+          <span class="trust-badge"><span class="trust-badge-dot"></span> 15 Deterministic Checks</span>
+          <span class="trust-badge"><span class="trust-badge-dot"></span> 10 National Registries</span>
+          <span class="trust-badge"><span class="trust-badge-dot"></span> PII-Masked AI Reasoning</span>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: INTERACTIVE BID RISK ANALYZER -->
+      <div class="hero-visual">
+        <div class="hero-analyzer-card" id="heroAnalyzerCard" role="region" aria-label="Interactive Bid Risk Analyzer Demo">
+          <!-- Topbar -->
+          <div class="analyzer-topbar">
+            <div class="analyzer-header-left">
+              <span class="live-beacon" aria-hidden="true"></span>
+              <span class="analyzer-topbar-title">Procurement Risk Analysis</span>
+            </div>
+            <div class="analyzer-topbar-badges">
+              <span class="badge-demo">Interactive Demo</span>
+              <span class="badge-demo">Sample Bid</span>
+            </div>
+          </div>
+
+          <!-- Connected Node Process Illustration -->
+          <div class="analyzer-pipeline" aria-label="Compliance Verification Pipeline Flow">
+            <div class="pipeline-node">
+              <span class="pipeline-node-icon">1</span>
+              <span>Bid Intake</span>
+            </div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-node active">
+              <span class="pipeline-node-icon">&#10003;</span>
+              <span>15 Checks Active</span>
+            </div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-node">
+              <span class="pipeline-node-icon">&#9997;</span>
+              <span>Officer Stamping</span>
+            </div>
+          </div>
+
+          <!-- Sample Bid Switcher Tabs -->
+          <div class="sample-bid-tabs" role="tablist" aria-label="Select Sample Bid Scenario">
+            <button class="sample-tab-btn active" id="sampleTab0" role="tab" aria-selected="true" type="button">
+              <span class="sample-tab-label">Petrotech Valves</span>
+              <span class="sample-tab-tag" style="color:var(--warning);">&#9888; 78 FLAG</span>
+            </button>
+            <button class="sample-tab-btn" id="sampleTab1" role="tab" aria-selected="false" type="button">
+              <span class="sample-tab-label">Bharat Marine</span>
+              <span class="sample-tab-tag" style="color:var(--success);">&#10003; 96 PASS</span>
+            </button>
+            <button class="sample-tab-btn" id="sampleTab2" role="tab" aria-selected="false" type="button">
+              <span class="sample-tab-label">Delta Piping</span>
+              <span class="sample-tab-tag" style="color:var(--critical);">&#10005; 42 CRITICAL</span>
+            </button>
+          </div>
+
+          <!-- Card Body -->
+          <div class="analyzer-body">
+            <!-- Bid Overview & Radial Gauge -->
+            <div class="bid-overview-row">
+              <div>
+                <div class="bid-meta-tender" id="heroTenderTitle">Tender #MOPNG-2026-088 &middot; High-Pressure Gate Valves</div>
+                <div class="bid-meta-bidder" id="heroBidderName">Petrotech Valve Industries Private Limited</div>
+                <div class="bid-meta-identifiers">
+                  <span class="bid-meta-pill" id="heroBidderCin">CIN: U29100MH2012PTC234891</span>
+                  <span class="bid-meta-pill" id="heroBidderPan">PAN: AXXXX1234X</span>
+                  <span class="bid-meta-pill" id="heroBidderGst">GST: 27XXXXX1234X1Z5</span>
+                </div>
+              </div>
+
+              <!-- Radial Gauge -->
+              <div class="score-gauge-wrap">
+                <div class="gauge-svg-box">
+                  <svg viewBox="0 0 88 88" aria-hidden="true">
+                    <circle class="gauge-bg" cx="44" cy="44" r="38" fill="none" stroke-width="7" />
+                    <circle class="gauge-progress" id="heroGaugeProgress" cx="44" cy="44" r="38" fill="none" stroke="#B45309" stroke-width="7" stroke-dasharray="238.76" stroke-dashoffset="52.5" />
+                  </svg>
+                  <div class="gauge-center-text">
+                    <span class="gauge-score-num" id="heroScoreNum">78</span>
+                    <span class="gauge-score-total">/100</span>
+                  </div>
+                </div>
+                <div class="gauge-details">
+                  <span class="risk-badge-lg badge-warning" id="heroRiskBadge">FLAG &middot; Medium Risk</span>
+                  <div class="check-counters">
+                    <span class="counter-pass" id="heroPassCount">12 Passed</span> &middot;
+                    <span class="counter-flag" id="heroFlagCount">2 Flagged</span> &middot;
+                    <span class="counter-fail" id="heroFailCount">1 Failed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compact Compliance Categories Checklist -->
+            <div class="compact-checks-header">
+              <span class="compact-checks-title">Sample Verification Checks</span>
+              <span class="compact-checks-hint">Click check to inspect evidence</span>
+            </div>
+            <div class="compact-checks-list" id="heroChecksList" role="list">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- AI Officer Briefing Panel -->
+            <div class="hero-ai-box">
+              <div class="ai-icon-bubble" aria-hidden="true">&#9733;</div>
+              <div class="ai-box-content">
+                <div class="ai-box-header">
+                  <span class="ai-box-title">Simulated AI Officer Briefing</span>
+                  <span class="ai-box-tag">Sample Explanation</span>
+                </div>
+                <p class="ai-box-text" id="heroAiText">
+                  Document consistency requires review. Bidder's legal name on PAN record ("Petrotech Valve Ind. Pvt Ltd") exhibits minor character variance with GST trade filing. Cross-verify registration certificates before formal clearance.
+                </p>
+                <div class="ai-box-sub">
+                  Generative AI assists with summarization &middot; Scoring is 100% deterministic code.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- METRICS HIGHLIGHTS -->
@@ -3175,7 +3816,395 @@ function renderPublicSiteData(){
     rGrid.innerHTML=regCards(E.adapters);
   }
 }
+/* ==========================================================================
+   INTERACTIVE HERO BID RISK ANALYZER CONTROLLER
+   ========================================================================== */
+function initHeroAnalyzer(){
+  var card = $('#heroAnalyzerCard');
+  if(!card) return;
+
+  var SAMPLES = [
+    {
+      tender: 'Tender #MOPNG-2026-088 · High-Pressure Gate Valves',
+      bidder: 'Petrotech Valve Industries Private Limited',
+      cin: 'CIN: U29100MH2012PTC234891',
+      pan: 'PAN: AXXXX1234X',
+      gst: 'GST: 27XXXXX1234X1Z5',
+      score: 78,
+      status: 'FLAG',
+      risk: 'FLAG · Medium Risk',
+      riskClass: 'badge-warning',
+      strokeColor: '#B45309',
+      pass: 12, flag: 2, fail: 1,
+      aiBriefing: 'Document consistency requires review. Bidder\'s legal name on PAN record ("Petrotech Valve Ind. Pvt Ltd") exhibits minor character variance with GST trade filing. Cross-verify registration certificates before formal clearance.',
+      checks: [
+        {
+          name: 'GST & PAN Cross-Verification',
+          status: 'FLAG',
+          badgeClass: 'badge-warning',
+          icon: '!',
+          iconBg: 'rgba(180, 83, 9, 0.15)',
+          iconColor: '#B45309',
+          impact: '−6 pts deduction',
+          registry: 'GSTN & ITD NSDL API',
+          reason: 'PAN registered entity name exhibits character variance with GST trade name. Secondary review required.'
+        },
+        {
+          name: 'MCA-21 Statutory Standing',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+8 pts awarded',
+          registry: 'MCA-21 Master Data',
+          reason: 'Active company status, incorporation in 2012 (>5 yrs), 3 active directors verified.'
+        },
+        {
+          name: 'Financial Turnover (3-Yr Average)',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+12 pts awarded',
+          registry: 'Audited Financial Statements',
+          reason: 'Average annual turnover of ₹18.4 Cr comfortably exceeds the ₹12.0 Cr tender requirement (153% coverage).'
+        },
+        {
+          name: 'Technical Experience & ISO',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+10 pts awarded',
+          registry: 'DigiLocker Certified Credentials',
+          reason: 'Valid ISO 9001:2015 and API Spec 6D subsea manufacturing certifications verified.'
+        },
+        {
+          name: 'Debarment & Integrity Screening',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+15 pts awarded',
+          registry: 'CPPP & GeM National Blacklist',
+          reason: 'No debarment records found across central ministries or public sector enterprises.'
+        }
+      ]
+    },
+    {
+      tender: 'Tender #MOPNG-2026-088 · High-Pressure Gate Valves',
+      bidder: 'Bharat Forge & Marine Equipments Ltd',
+      cin: 'CIN: L27100PN1961PLC011936',
+      pan: 'PAN: BXXXX5678Y',
+      gst: 'GST: 27XXXXX5678Y1Z9',
+      score: 96,
+      status: 'PASS',
+      risk: 'PASS · Low Risk',
+      riskClass: 'badge-success',
+      strokeColor: '#15803D',
+      pass: 15, flag: 0, fail: 0,
+      aiBriefing: 'Exemplary bid profile. All 15 deterministic checks satisfied. Financial capacity, statutory filings, and technical experience surpass tender criteria. Recommended for commercial opening.',
+      checks: [
+        {
+          name: 'GST & PAN Cross-Verification',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+10 pts awarded',
+          registry: 'GSTN & ITD NSDL API',
+          reason: '100% legal entity match across GSTN and ITD records; 24-month continuous filing compliance.'
+        },
+        {
+          name: 'MCA-21 Statutory Standing',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+8 pts awarded',
+          registry: 'MCA-21 Master Data',
+          reason: 'Public Limited entity incorporated in 1989. All ROC annual returns and director disclosures verified.'
+        },
+        {
+          name: 'Financial Turnover (3-Yr Average)',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+12 pts awarded',
+          registry: 'Audited Financial Statements',
+          reason: '3-year average turnover of ₹84.2 Cr represents 210% of mandatory tender criteria.'
+        },
+        {
+          name: 'Technical Experience & ISO',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+10 pts awarded',
+          registry: 'DigiLocker Certified Credentials',
+          reason: '5 past high-pressure subsea valve supply contracts completed for ONGC with commendation letters.'
+        },
+        {
+          name: 'Debarment & Integrity Screening',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+15 pts awarded',
+          registry: 'CPPP & GeM National Blacklist',
+          reason: 'Clear integrity profile with zero negative observations across all national registries.'
+        }
+      ]
+    },
+    {
+      tender: 'Tender #MOPNG-2026-088 · High-Pressure Gate Valves',
+      bidder: 'Delta Piping & Infra Solutions LLC',
+      cin: 'CIN: U45200DL2018PTC334112',
+      pan: 'PAN: CXXXX9012Z',
+      gst: 'GST: 07XXXXX9012Z1Z3',
+      score: 42,
+      status: 'FAIL',
+      risk: 'FAIL · Critical Risk',
+      riskClass: 'badge-critical',
+      strokeColor: '#B91C1C',
+      pass: 9, flag: 3, fail: 3,
+      aiBriefing: 'Critical procurement risk detected. Active debarment notice enforces mandatory hard-cap to score (<45). Non-compliant on minimum financial turnover threshold. Recommended for disqualification.',
+      checks: [
+        {
+          name: 'GST & PAN Cross-Verification',
+          status: 'FLAG',
+          badgeClass: 'badge-warning',
+          icon: '!',
+          iconBg: 'rgba(180, 83, 9, 0.15)',
+          iconColor: '#B45309',
+          impact: '−6 pts deduction',
+          registry: 'GSTN & ITD NSDL API',
+          reason: 'GSTIN under active scrutiny flag; 2 quarterly returns pending submission.'
+        },
+        {
+          name: 'MCA-21 Statutory Standing',
+          status: 'PASS',
+          badgeClass: 'badge-success',
+          icon: '✓',
+          iconBg: 'rgba(21, 128, 61, 0.15)',
+          iconColor: '#15803D',
+          impact: '+8 pts awarded',
+          registry: 'MCA-21 Master Data',
+          reason: 'Registered entity active on MCA registry; filings verified for FY 2024.'
+        },
+        {
+          name: 'Financial Turnover (3-Yr Average)',
+          status: 'FAIL',
+          badgeClass: 'badge-critical',
+          icon: '✕',
+          iconBg: 'rgba(185, 28, 28, 0.15)',
+          iconColor: '#B91C1C',
+          impact: '−12 pts deduction',
+          registry: 'Audited Financial Statements',
+          reason: 'Average ₹7.1 Cr turnover fails minimum qualifying tender threshold of ₹12.0 Cr.'
+        },
+        {
+          name: 'Technical Experience & ISO',
+          status: 'FLAG',
+          badgeClass: 'badge-warning',
+          icon: '!',
+          iconBg: 'rgba(180, 83, 9, 0.15)',
+          iconColor: '#B45309',
+          impact: '−5 pts deduction',
+          registry: 'DigiLocker Certified Credentials',
+          reason: 'API Spec 6D certificate expired prior to tender publish date; renewal pending.'
+        },
+        {
+          name: 'Debarment & Integrity Screening',
+          status: 'FAIL',
+          badgeClass: 'badge-critical',
+          icon: '✕',
+          iconBg: 'rgba(185, 28, 28, 0.15)',
+          iconColor: '#B91C1C',
+          impact: 'Critical Hard-Cap (<=45)',
+          registry: 'CPPP & GeM National Blacklist',
+          reason: 'CRITICAL ALERT: Active debarment notice found under GeM Incident Notice #GEM-2025-091.'
+        }
+      ]
+    }
+  ];
+
+  var activeIndex = 0;
+  var currentScoreVal = 0;
+  var animFrameId = null;
+  var circumference = 238.76;
+
+  function renderSample(idx, animate){
+    activeIndex = idx;
+    var data = SAMPLES[idx];
+
+    // Update tab states
+    for(var t=0; t<3; t++){
+      var btn = $('#sampleTab' + t);
+      if(btn){
+        var isAct = (t === idx);
+        btn.classList.toggle('active', isAct);
+        btn.setAttribute('aria-selected', String(isAct));
+      }
+    }
+
+    // Update metadata
+    $('#heroTenderTitle').textContent = data.tender;
+    $('#heroBidderName').textContent = data.bidder;
+    $('#heroBidderCin').textContent = data.cin;
+    $('#heroBidderPan').textContent = data.pan;
+    $('#heroBidderGst').textContent = data.gst;
+
+    // Update risk badge & counters
+    var rBadge = $('#heroRiskBadge');
+    rBadge.className = 'risk-badge-lg ' + data.riskClass;
+    rBadge.textContent = data.risk;
+
+    $('#heroPassCount').textContent = data.pass + ' Passed';
+    $('#heroFlagCount').textContent = data.flag + ' Flagged';
+    $('#heroFailCount').textContent = data.fail + ' Failed';
+
+    // Update AI text
+    $('#heroAiText').textContent = data.aiBriefing;
+
+    // Animate radial gauge
+    var circle = $('#heroGaugeProgress');
+    var scoreNum = $('#heroScoreNum');
+    var targetOffset = circumference * (1 - (data.score / 100));
+
+    circle.style.stroke = data.strokeColor;
+    circle.style.strokeDashoffset = targetOffset;
+
+    if(animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var startVal = currentScoreVal;
+      var startTime = performance.now();
+      var duration = 650;
+
+      if(animFrameId) cancelAnimationFrame(animFrameId);
+
+      function step(now){
+        var progress = Math.min((now - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+        var val = Math.round(startVal + (data.score - startVal) * ease);
+        scoreNum.textContent = val;
+        currentScoreVal = val;
+        if(progress < 1){
+          animFrameId = requestAnimationFrame(step);
+        } else {
+          scoreNum.textContent = data.score;
+          currentScoreVal = data.score;
+        }
+      }
+      animFrameId = requestAnimationFrame(step);
+    } else {
+      scoreNum.textContent = data.score;
+      currentScoreVal = data.score;
+    }
+
+    // Render Checklist
+    var list = $('#heroChecksList');
+    list.innerHTML = data.checks.map(function(c, cIdx){
+      return '<div class="hero-check-item" tabindex="0" role="button" aria-expanded="false" data-cidx="' + cIdx + '">' +
+        '<div class="check-main-row">' +
+          '<div class="check-identity">' +
+            '<span class="check-dot-icon" style="background:' + c.iconBg + ';color:' + c.iconColor + '">' + c.icon + '</span>' +
+            '<span class="check-name-text">' + esc(c.name) + '</span>' +
+          '</div>' +
+          '<div class="check-row-right">' +
+            '<span class="badge ' + c.badgeClass + '" style="font-size:10px;padding:2px 7px;">' + c.status + '</span>' +
+            '<span class="check-chevron">&#9660;</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="check-expanded-detail">' +
+          '<div><strong>Registry Source:</strong> ' + esc(c.registry) + '</div>' +
+          '<div><strong>Scoring Impact:</strong> ' + esc(c.impact) + '</div>' +
+          '<div style="margin-top:2px;"><strong>Finding:</strong> ' + esc(c.reason) + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    // Attach click and keyboard handlers to check items
+    $$('.hero-check-item', list).forEach(function(item){
+      function toggleCheck(){
+        var isExp = item.classList.contains('expanded');
+        // Optional accordion feel: collapse others
+        $$('.hero-check-item', list).forEach(function(other){
+          if(other !== item){
+            other.classList.remove('expanded');
+            other.setAttribute('aria-expanded', 'false');
+          }
+        });
+        item.classList.toggle('expanded', !isExp);
+        item.setAttribute('aria-expanded', String(!isExp));
+      }
+
+      item.addEventListener('click', toggleCheck);
+      item.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          toggleCheck();
+        }
+      });
+    });
+  }
+
+  // Wire Tab Buttons
+  for(var i=0; i<3; i++){
+    (function(idx){
+      var btn = $('#sampleTab' + idx);
+      if(btn){
+        btn.addEventListener('click', function(){ renderSample(idx, true); });
+      }
+    })(i);
+  }
+
+  // Initial render (starts at 0, animates when in view)
+  renderSample(0, false);
+
+  // Subtle 3D Tilt Effect on desktop (respects prefers-reduced-motion)
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth > 900){
+    var cardRect = null;
+    card.addEventListener('mouseenter', function(){
+      cardRect = card.getBoundingClientRect();
+    });
+    card.addEventListener('mousemove', function(e){
+      if(!cardRect) cardRect = card.getBoundingClientRect();
+      var x = (e.clientX - cardRect.left) / cardRect.width - 0.5;
+      var y = (e.clientY - cardRect.top) / cardRect.height - 0.5;
+      var rotY = (x * 5).toFixed(2);
+      var rotX = (-y * 5).toFixed(2);
+      card.style.transform = 'perspective(1000px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) translateY(-2px)';
+    });
+    card.addEventListener('mouseleave', function(){
+      cardRect = null;
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
+  }
+
+  // Animate on scroll into view
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){
+        renderSample(activeIndex, true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.25 });
+    observer.observe(card);
+  }
+}
+
 renderPublicSiteData();
+initHeroAnalyzer();
 
 if(location.hash==='#workstation') openWS();
 })();
