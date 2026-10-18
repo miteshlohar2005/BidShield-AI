@@ -2823,13 +2823,31 @@ function api(path,opts){
 var ws=$('#ws'), gate=$('#gate'), consoleEl=$('#console');
 function openWS(){
   ws.hidden=false; document.documentElement.style.overflow='hidden';
-  try{ if(location.hash!=='#workstation') history.replaceState(null,'','#workstation'); }catch(_){}
+  try{ if(location.hash!=='#workstation') location.hash='#workstation'; }catch(_){}
   if(S.user) showConsole(); else showGate();
 }
 function closeWS(){
   ws.hidden=true; document.documentElement.style.overflow='';
-  try{ history.replaceState(null,'',location.pathname+location.search); }catch(_){}
+  try{
+    if(location.hash==='#workstation'){
+      history.pushState(null,'',location.pathname+location.search);
+    }
+  }catch(_){}
 }
+window.addEventListener('hashchange',function(){
+  if(location.hash==='#workstation'){
+    if(ws.hidden) openWS();
+  } else {
+    if(!ws.hidden) closeWS();
+  }
+});
+window.addEventListener('popstate',function(){
+  if(location.hash==='#workstation'){
+    if(ws.hidden) openWS();
+  } else {
+    if(!ws.hidden) closeWS();
+  }
+});
 function showGate(){
   consoleEl.hidden=true; gate.hidden=false;
   try{ $('#apiUrl').value=localStorage.getItem('pp_api')||''; }catch(_){}
@@ -3139,7 +3157,7 @@ function selectTender(id){
                 '<button class="btn btn-teal btn-sm" type="button" data-eval="'+i+'">Evaluate &rarr;</button>'+
               '</td>'+
             '</tr>';
-          }}).join('')+
+          }).join('')+
         '</tbody>'+
       '</table>'+
     '</div>'+
@@ -3151,7 +3169,7 @@ function selectTender(id){
     btn.addEventListener('click',function(){
       evaluate(t, t.bidders[+btn.dataset.eval]);
     });
-  }});
+  });
 
   var sb=$('#screenBtn',d);
   if(sb) sb.addEventListener('click',function(){ screenCollusion(t); });
@@ -3326,7 +3344,7 @@ function renderResult(t, b, res){
           if(armedBtn){ armedBtn.classList.remove('armed'); armedBtn.textContent=armedBtn.dataset.dec; armedBtn=null; }
         }, 4000);
         return;
-      }}
+      }
       clearTimeout(armTimer); btn.classList.remove('armed'); btn.textContent=d; armedBtn=null;
 
       if(d==='Qualified' && res.verdict!=='Compliant'){
@@ -3490,7 +3508,7 @@ function wireDocCheck(t, b, area){
       .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(typeof j.detail==='string'?j.detail:'Could not parse file.'); return j; }); })
       .then(paint, function(e){
         out.innerHTML='<div class="callout callout-warning">'+esc(e.message||'Document reading failed.')+'</div>';
-      }}).then(function(){ go.disabled=!file; });
+      }).then(function(){ go.disabled=!file; });
   };
 
   inp.addEventListener('change',function(){
@@ -3681,7 +3699,7 @@ $('#resetBtn').addEventListener('click',function(){
   if(S.mode==='live'){
     api('/api/admin/reset-demo',{method:'POST'}).then(function(r){ done(r.cleared); }, function(e){
       rb.disabled=false; toast(e.message||'Reset failed.');
-    }});
+    });
   } else {
     var n=demoAudit.length; demoAudit.length=0; done(n);
   }
